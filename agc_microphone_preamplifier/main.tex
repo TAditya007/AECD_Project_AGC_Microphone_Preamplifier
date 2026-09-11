@@ -1,0 +1,319 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[a4paper,margin=1in,headheight=15pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{amsmath,amssymb}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{klred}{HTML}{A80000}
+\definecolor{klblue}{HTML}{075985}
+\definecolor{lightgray}{HTML}{F3F4F6}
+
+% -----------------------------------------------------------------------------
+% EDIT ONLY THIS PROJECT-INFORMATION BLOCK BEFORE WRITING THE REPORT.
+% -----------------------------------------------------------------------------
+\newcommand{\projecttitle}{Enter the Assigned Project Title}
+\newcommand{\projectid}{PXX}
+\newcommand{\batchnumber}{XAB-XX}
+\newcommand{\comapping}{COX}
+\newcommand{\academicyear}{2025--2026, Term 3}
+\newcommand{\facultyname}{Course Instructor Name}
+
+\newcommand{\studentone}{Student Name 1}
+\newcommand{\idone}{University ID 1}
+\newcommand{\studenttwo}{Student Name 2}
+\newcommand{\idtwo}{University ID 2}
+\newcommand{\studentthree}{Student Name 3}
+\newcommand{\idthree}{University ID 3}
+\newcommand{\studentfour}{Student Name 4}
+\newcommand{\idfour}{University ID 4}
+\newcommand{\studentfive}{Not applicable}
+\newcommand{\idfive}{--}
+% -----------------------------------------------------------------------------
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{2em}
+\renewcommand{\arraystretch}{1.2}
+\setlist[itemize]{leftmargin=1.5em,itemsep=2pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{25EC1302E -- AECD Project Report}
+\rhead{Batch \batchnumber}
+\cfoot{\thepage}
+
+\hypersetup{
+    pdftitle={\projecttitle},
+    pdfauthor={Batch \batchnumber},
+}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    frame=single,
+    backgroundcolor=\color{lightgray},
+    breaklines=true,
+    numbers=left,
+    numberstyle=\tiny,
+}
+
+\newcommand{\figureplaceholder}[2]{%
+    \begin{figure}[H]
+        \centering
+        \fbox{\parbox[c][5cm][c]{0.88\textwidth}{\centering #1}}
+        \caption{#2}
+    \end{figure}
+}
+
+\begin{document}
+
+\pagenumbering{gobble}
+\begin{titlepage}
+    \centering
+    \includegraphics[width=0.72\textwidth]{klh_logo.png}\par
+    \vspace{0.8cm}
+    {\Large\bfseries Department of Electronics and Communication Engineering\par}
+    \vspace{0.8cm}
+    {\color{klred}\LARGE\bfseries Project Report\par}
+    \vspace{0.4cm}
+    {\Large 25EC1302E -- Analog Electronic Circuit Design\par}
+    \vspace{0.8cm}
+    {\LARGE\bfseries \projecttitle\par}
+    \vspace{0.5cm}
+    {\large Project \projectid\quad|\quad Batch \batchnumber\quad|\quad \comapping\par}
+    \vspace{0.8cm}
+
+    \begin{tabular}{@{}p{3.2cm}p{5.7cm}p{4.0cm}@{}}
+        \toprule
+        \textbf{S. No.} & \textbf{Student name} & \textbf{University ID} \\
+        \midrule
+        1 & \studentone & \idone \\
+        2 & \studenttwo & \idtwo \\
+        3 & \studentthree & \idthree \\
+        4 & \studentfour & \idfour \\
+        5 (if applicable) & \studentfive & \idfive \\
+        \bottomrule
+    \end{tabular}
+
+    \vfill
+    \begin{tabular}{>{\bfseries}p{4.0cm}p{7.0cm}}
+        Submitted to & \facultyname \\
+        Academic year & \academicyear \\
+        Submission date & DD Month YYYY \\
+    \end{tabular}
+    \vspace{0.8cm}
+
+    {\large K L Deemed to be University\par}
+\end{titlepage}
+
+\pagenumbering{roman}
+
+\section*{Certificate}
+
+This is to certify that the project report entitled ``\projecttitle'' is a bona fide record of the work completed by Batch \batchnumber{} for the course 25EC1302E -- Analog Electronic Circuit Design during \academicyear.
+
+\vspace{2cm}
+\begin{tabularx}{\textwidth}{X X}
+\centering Batch representative signature & \centering Course instructor signature\tabularnewline
+\end{tabularx}
+
+\section*{Declaration}
+
+We declare that this report, the circuit design, simulation files, prototype, plots, photographs, and measured data are our original work. All external ideas, figures, and data sheets used in this report are properly cited.
+
+\section*{Abstract}
+
+Write 150--200 words covering the problem, proposed circuit, key design values, simulation approach, hardware implementation, most important measured results, and the main conclusion. Include quantitative results rather than general claims.
+
+\vspace{0.5cm}
+\textbf{Keywords:} analog circuit design; Multisim; breadboard prototype; measurement; \emph{add two project-specific terms}.
+
+\tableofcontents
+\listoffigures
+\listoftables
+\clearpage
+\pagenumbering{arabic}
+
+\section{Problem Definition and Specifications}
+
+State the engineering problem and the intended use of the circuit. Convert the assigned minimum success criterion into measurable specifications.
+
+\begin{table}[H]
+\centering
+\caption{Target specifications.}
+\begin{tabularx}{0.92\textwidth}{@{}lXll@{}}
+\toprule
+\textbf{Parameter} & \textbf{Target} & \textbf{Tolerance} & \textbf{Verification method} \\
+\midrule
+Example: mid-band gain & Replace with target & Replace & CRO/Multisim \\
+Example: bandwidth & Replace with target & Replace & AC sweep \\
+Example: supply voltage & Replace with target & Replace & DMM \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Background and Operating Principle}
+
+Explain the operating principle using equations and cited sources. For example, the closed-loop non-inverting gain is
+\begin{equation}
+    A_v = 1 + \frac{R_f}{R_g}.
+    \label{eq:noninverting_gain}
+\end{equation}
+Use SI units consistently, such as $1~\mathrm{MHz}$, $10~\mathrm{mV}$, and $8~\Omega$. Cite relevant textbooks and data sheets \cite{boylestad2013,lm386datasheet}.
+
+\section{System Architecture and Circuit Design}
+
+\subsection{Block Diagram}
+
+\figureplaceholder{Insert a clear block diagram here.}{System-level block diagram.}
+
+\subsection{Circuit Schematic and Test Points}
+
+\figureplaceholder{Insert the final circuit schematic exported at high resolution from Multisim. Label the supply rails, component values, and test points.}{Final circuit schematic and designated test points.}
+
+\subsection{Design Calculations and Component Selection}
+
+Show the calculation for every important resistor, capacitor, inductor, bias point, gain, cutoff/resonant frequency, time constant, and power rating. Explain why the selected standard component value is acceptable.
+
+\begin{table}[H]
+\centering
+\caption{Major component selection.}
+\begin{tabularx}{\textwidth}{@{}lXlll@{}}
+\toprule
+\textbf{Reference} & \textbf{Function} & \textbf{Calculated} & \textbf{Selected} & \textbf{Rating/model} \\
+\midrule
+R1 & Replace with function & -- & -- & -- \\
+C1 & Replace with function & -- & -- & -- \\
+Q1/IC1 & Replace with function & -- & -- & -- \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Multisim Simulation}
+
+Document the models, sources, loads, instruments, analysis settings, and initial conditions. Show readable screenshots/plots rather than the entire desktop.
+
+\begin{table}[H]
+\centering
+\caption{Simulation test plan.}
+\begin{tabularx}{\textwidth}{@{}lXXl@{}}
+\toprule
+\textbf{Test} & \textbf{Input/condition} & \textbf{Quantity recorded} & \textbf{Expected result} \\
+\midrule
+DC operating point & Replace & Node voltages/currents & Replace \\
+Transient analysis & Replace & Amplitude, frequency, distortion & Replace \\
+AC analysis & Replace & Gain and cutoff/resonance & Replace \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\figureplaceholder{Insert a labelled simulation waveform or frequency-response plot.}{Representative Multisim result.}
+
+\section{Hardware Implementation}
+
+Describe the construction sequence, grounding, decoupling, wiring, pinout verification, and staged testing. Include a clear top-view photograph and a close-up of the critical stage.
+
+\figureplaceholder{Insert an original, well-lit photograph of the prototype with major blocks labelled.}{Completed hardware prototype.}
+
+\subsection{Bill of Materials}
+
+\begin{longtable}{@{}clllr@{}}
+\caption{Bill of materials.}\\
+\toprule
+\textbf{S. No.} & \textbf{Component} & \textbf{Value/model} & \textbf{Quantity} & \textbf{Approx. cost (INR)} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{S. No.} & \textbf{Component} & \textbf{Value/model} & \textbf{Quantity} & \textbf{Approx. cost (INR)} \\
+\midrule
+\endhead
+1 & Replace & Replace & 1 & 0 \\
+2 & Replace & Replace & 1 & 0 \\
+\midrule
+\multicolumn{4}{r}{\textbf{Total}} & \textbf{0} \\
+\bottomrule
+\end{longtable}
+
+\section{Experimental Procedure and Results}
+
+State the instrument model/range where available, connection method, supply condition, signal settings, and the order of measurements. Do not report values that were not measured.
+
+\begin{table}[H]
+\centering
+\caption{Comparison of calculated, simulated, and measured results.}
+\begin{tabularx}{\textwidth}{@{}Xllll@{}}
+\toprule
+\textbf{Parameter} & \textbf{Calculated} & \textbf{Simulated} & \textbf{Measured} & \textbf{Error (\%)} \\
+\midrule
+Replace with parameter 1 & -- & -- & -- & -- \\
+Replace with parameter 2 & -- & -- & -- & -- \\
+Replace with parameter 3 & -- & -- & -- & -- \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Discuss discrepancies using component tolerances, parasitic effects, instrument loading, model limitations, wiring, noise, temperature, and measurement uncertainty as applicable.
+
+\section{Troubleshooting and Design Iterations}
+
+\begin{table}[H]
+\centering
+\caption{Troubleshooting log.}
+\begin{tabularx}{\textwidth}{@{}p{2.5cm}XXX@{}}
+\toprule
+\textbf{Date/stage} & \textbf{Observed problem} & \textbf{Diagnostic evidence and root cause} & \textbf{Corrective action and outcome} \\
+\midrule
+Replace & Replace & Replace & Replace \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Safety, Limitations, and Future Improvements}
+
+Describe low-voltage electrical safety, device power limits, thermal concerns, short-circuit protection, prototype limitations, and realistic improvements. State that direct mains wiring was not used on the breadboard.
+
+\section{Team Contributions}
+
+\begin{table}[H]
+\centering
+\caption{Individual contribution record.}
+\begin{tabularx}{\textwidth}{@{}lXXl@{}}
+\toprule
+\textbf{Student} & \textbf{Primary responsibilities} & \textbf{Evidence/files produced} & \textbf{Contribution (\%)} \\
+\midrule
+\studentone & Replace & Replace & -- \\
+\studenttwo & Replace & Replace & -- \\
+\studentthree & Replace & Replace & -- \\
+\studentfour & Replace & Replace & -- \\
+\studentfive & Replace or delete row & Replace & -- \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Conclusion}
+
+Summarize whether each target specification and the assigned minimum success criterion were achieved. Report the most important measured values and one limitation. Do not introduce new results in the conclusion.
+
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\appendix
+\section{Additional Waveforms and Data}
+
+Place supporting oscilloscope screenshots, repeated trials, data tables, calculations, or pinout notes here. Every appendix item must be referenced from the main report.
+
+\end{document}
