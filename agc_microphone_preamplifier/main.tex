@@ -1,319 +1,268 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[12pt,a4paper]{report}
 
+% -------------------------------------------------
+% Packages
+% -------------------------------------------------
 \usepackage[a4paper,margin=1in,headheight=15pt]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{microtype}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
-\usepackage{booktabs}
-\usepackage{tabularx}
-\usepackage{longtable}
-\usepackage{array}
-\usepackage{amsmath,amssymb}
 \usepackage{float}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{multirow}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
 \usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{fancyvrb}
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{microtype}
+\usepackage[normalem]{ulem}
 \usepackage{listings}
-\usepackage{fancyhdr}
+\usepackage[backend=biber,style=ieee]{biblatex}
+\usetikzlibrary{calc}
 \usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
 
-\definecolor{klred}{HTML}{A80000}
-\definecolor{klblue}{HTML}{075985}
-\definecolor{lightgray}{HTML}{F3F4F6}
-
-% -----------------------------------------------------------------------------
-% EDIT ONLY THIS PROJECT-INFORMATION BLOCK BEFORE WRITING THE REPORT.
-% -----------------------------------------------------------------------------
-\newcommand{\projecttitle}{Enter the Assigned Project Title}
+% -------------------------------------------------
+% Project information
+% -------------------------------------------------
+\newcommand{\projecttitle}{Automatic-Gain-Control Microphone Preamplifier}
 \newcommand{\projectid}{PXX}
-\newcommand{\batchnumber}{XAB-XX}
+\newcommand{\batchnumber}{--}
 \newcommand{\comapping}{COX}
 \newcommand{\academicyear}{2025--2026, Term 3}
-\newcommand{\facultyname}{Course Instructor Name}
+\newcommand{\facultyname}{[Insert course instructor name here]}
 
-\newcommand{\studentone}{Student Name 1}
-\newcommand{\idone}{University ID 1}
-\newcommand{\studenttwo}{Student Name 2}
-\newcommand{\idtwo}{University ID 2}
-\newcommand{\studentthree}{Student Name 3}
-\newcommand{\idthree}{University ID 3}
-\newcommand{\studentfour}{Student Name 4}
-\newcommand{\idfour}{University ID 4}
+\newcommand{\studentone}{[Insert student name 1 here]}
+\newcommand{\idone}{[Insert university ID 1 here]}
+\newcommand{\studenttwo}{[Insert student name 2 here]}
+\newcommand{\idtwo}{[Insert university ID 2 here]}
+\newcommand{\studentthree}{[Insert student name 3 here]}
+\newcommand{\idthree}{[Insert university ID 3 here]}
+\newcommand{\studentfour}{[Insert student name 4 here]}
+\newcommand{\idfour}{[Insert university ID 4 here]}
 \newcommand{\studentfive}{Not applicable}
 \newcommand{\idfive}{--}
-% -----------------------------------------------------------------------------
 
+% -------------------------------------------------
+% Formatting
+% -------------------------------------------------
+\onehalfspacing
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{5pt}
-\setlength{\emergencystretch}{2em}
+\setlength{\parskip}{0.5em}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
 \renewcommand{\arraystretch}{1.2}
 \setlist[itemize]{leftmargin=1.5em,itemsep=2pt}
-
-\pagestyle{fancy}
-\fancyhf{}
-\lhead{25EC1302E -- AECD Project Report}
-\rhead{Batch \batchnumber}
-\cfoot{\thepage}
+\setlength{\emergencystretch}{2em}
 
 \hypersetup{
-    pdftitle={\projecttitle},
-    pdfauthor={Batch \batchnumber},
+colorlinks=false,
+pdftitle={\projecttitle},
+pdfauthor={Batch \batchnumber},
+pdfsubject={Project Report},
+pdfkeywords={AGC, microphone preamplifier, analog circuit design, Multisim}
 }
 
-\lstset{
-    basicstyle=\ttfamily\small,
-    frame=single,
-    backgroundcolor=\color{lightgray},
-    breaklines=true,
-    numbers=left,
-    numberstyle=\tiny,
+% -------------------------------------------------
+% Header and footer
+% -------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Analog Electronic Circuit Design}
+\fancyhead[R]{25EC1302E}
+\fancyfoot[L]{Batch \batchnumber}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\setlength{\headheight}{14.5pt}
+
+\fancypagestyle{plain}{%
+\fancyhf{}
+\fancyhead[L]{Analog Electronic Circuit Design}
+\fancyhead[R]{25EC1302E}
+\fancyfoot[L]{Batch \batchnumber}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
 }
 
+\titleformat{\chapter}[display]
+{\bfseries\Large}
+{\chaptername\ \thechapter}{10pt}{\Large}
+
+% -------------------------------------------------
+% Listings style
+% -------------------------------------------------
+\lstdefinestyle{spicestyle}{
+basicstyle=\ttfamily\small,
+keywordstyle=\color{blue},
+commentstyle=\color{green!40!black},
+stringstyle=\color{red!60!black},
+numbers=left,
+numberstyle=\tiny,
+stepnumber=1,
+numbersep=8pt,
+breaklines=true,
+breakatwhitespace=true,
+showstringspaces=false,
+frame=single,
+backgroundcolor=\color{gray!10},
+tabsize=4,
+captionpos=b
+}
+\lstset{style=spicestyle}
+
+% -------------------------------------------------
+% Breakable file-tree listing style
+% -------------------------------------------------
+\lstdefinestyle{treestyle}{
+basicstyle=\ttfamily\footnotesize,
+breaklines=true,
+breakatwhitespace=false,
+columns=fullflexible,
+keepspaces=true,
+showstringspaces=false,
+frame=single,
+backgroundcolor=\color{gray!10},
+numbers=none,
+captionpos=b
+}
+
+% -------------------------------------------------
+% Figure placeholder helper
+% -------------------------------------------------
 \newcommand{\figureplaceholder}[2]{%
-    \begin{figure}[H]
-        \centering
-        \fbox{\parbox[c][5cm][c]{0.88\textwidth}{\centering #1}}
-        \caption{#2}
-    \end{figure}
+\begin{figure}[H]
+\centering
+\fbox{\parbox[c][5cm][c]{0.88\textwidth}{\centering #1}}
+\caption{#2}
+\end{figure}
 }
 
+% -------------------------------------------------
+% Document
+% -------------------------------------------------
 \begin{document}
-
-\pagenumbering{gobble}
-\begin{titlepage}
-    \centering
-    \includegraphics[width=0.72\textwidth]{klh_logo.png}\par
-    \vspace{0.8cm}
-    {\Large\bfseries Department of Electronics and Communication Engineering\par}
-    \vspace{0.8cm}
-    {\color{klred}\LARGE\bfseries Project Report\par}
-    \vspace{0.4cm}
-    {\Large 25EC1302E -- Analog Electronic Circuit Design\par}
-    \vspace{0.8cm}
-    {\LARGE\bfseries \projecttitle\par}
-    \vspace{0.5cm}
-    {\large Project \projectid\quad|\quad Batch \batchnumber\quad|\quad \comapping\par}
-    \vspace{0.8cm}
-
-    \begin{tabular}{@{}p{3.2cm}p{5.7cm}p{4.0cm}@{}}
-        \toprule
-        \textbf{S. No.} & \textbf{Student name} & \textbf{University ID} \\
-        \midrule
-        1 & \studentone & \idone \\
-        2 & \studenttwo & \idtwo \\
-        3 & \studentthree & \idthree \\
-        4 & \studentfour & \idfour \\
-        5 (if applicable) & \studentfive & \idfive \\
-        \bottomrule
-    \end{tabular}
-
-    \vfill
-    \begin{tabular}{>{\bfseries}p{4.0cm}p{7.0cm}}
-        Submitted to & \facultyname \\
-        Academic year & \academicyear \\
-        Submission date & DD Month YYYY \\
-    \end{tabular}
-    \vspace{0.8cm}
-
-    {\large K L Deemed to be University\par}
-\end{titlepage}
 
 \pagenumbering{roman}
 
-\section*{Certificate}
+% Front matter
+\input{frontmatter/titlepage}
+\clearpage
+\input{frontmatter/certificate}
+\clearpage
+\input{frontmatter/declaration}
+\clearpage
+\input{frontmatter/acknowledgements}
+\clearpage
+\input{frontmatter/abstract}
+\clearpage
+\input{frontmatter/abbreviations}
+\clearpage
 
-This is to certify that the project report entitled ``\projecttitle'' is a bona fide record of the work completed by Batch \batchnumber{} for the course 25EC1302E -- Analog Electronic Circuit Design during \academicyear.
-
-\vspace{2cm}
-\begin{tabularx}{\textwidth}{X X}
-\centering Batch representative signature & \centering Course instructor signature\tabularnewline
-\end{tabularx}
-
-\section*{Declaration}
-
-We declare that this report, the circuit design, simulation files, prototype, plots, photographs, and measured data are our original work. All external ideas, figures, and data sheets used in this report are properly cited.
-
-\section*{Abstract}
-
-Write 150--200 words covering the problem, proposed circuit, key design values, simulation approach, hardware implementation, most important measured results, and the main conclusion. Include quantitative results rather than general claims.
-
-\vspace{0.5cm}
-\textbf{Keywords:} analog circuit design; Multisim; breadboard prototype; measurement; \emph{add two project-specific terms}.
-
+% Tables and lists
 \tableofcontents
+\clearpage
 \listoffigures
+\clearpage
 \listoftables
 \clearpage
+
 \pagenumbering{arabic}
 
-\section{Problem Definition and Specifications}
+% Chapters
+\input{chapters/chapter01_introduction}
+\input{chapters/chapter02_problem_definition}
+\input{chapters/chapter03_theory}
+\input{chapters/chapter04_system_architecture}
+\input{chapters/chapter05_circuit_design}
+\input{chapters/chapter06_multisim_simulation}
+\input{chapters/chapter07_hardware_implementation}
+\input{chapters/chapter08_experimental_results}
+\input{chapters/chapter09_troubleshooting}
+\input{chapters/chapter10_safety_limitations}
+\input{chapters/chapter11_team_contributions}
+\input{chapters/chapter12_conclusion}
 
-State the engineering problem and the intended use of the circuit. Convert the assigned minimum success criterion into measurable specifications.
-
-\begin{table}[H]
-\centering
-\caption{Target specifications.}
-\begin{tabularx}{0.92\textwidth}{@{}lXll@{}}
-\toprule
-\textbf{Parameter} & \textbf{Target} & \textbf{Tolerance} & \textbf{Verification method} \\
-\midrule
-Example: mid-band gain & Replace with target & Replace & CRO/Multisim \\
-Example: bandwidth & Replace with target & Replace & AC sweep \\
-Example: supply voltage & Replace with target & Replace & DMM \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\section{Background and Operating Principle}
-
-Explain the operating principle using equations and cited sources. For example, the closed-loop non-inverting gain is
-\begin{equation}
-    A_v = 1 + \frac{R_f}{R_g}.
-    \label{eq:noninverting_gain}
-\end{equation}
-Use SI units consistently, such as $1~\mathrm{MHz}$, $10~\mathrm{mV}$, and $8~\Omega$. Cite relevant textbooks and data sheets \cite{boylestad2013,lm386datasheet}.
-
-\section{System Architecture and Circuit Design}
-
-\subsection{Block Diagram}
-
-\figureplaceholder{Insert a clear block diagram here.}{System-level block diagram.}
-
-\subsection{Circuit Schematic and Test Points}
-
-\figureplaceholder{Insert the final circuit schematic exported at high resolution from Multisim. Label the supply rails, component values, and test points.}{Final circuit schematic and designated test points.}
-
-\subsection{Design Calculations and Component Selection}
-
-Show the calculation for every important resistor, capacitor, inductor, bias point, gain, cutoff/resonant frequency, time constant, and power rating. Explain why the selected standard component value is acceptable.
-
-\begin{table}[H]
-\centering
-\caption{Major component selection.}
-\begin{tabularx}{\textwidth}{@{}lXlll@{}}
-\toprule
-\textbf{Reference} & \textbf{Function} & \textbf{Calculated} & \textbf{Selected} & \textbf{Rating/model} \\
-\midrule
-R1 & Replace with function & -- & -- & -- \\
-C1 & Replace with function & -- & -- & -- \\
-Q1/IC1 & Replace with function & -- & -- & -- \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\section{Multisim Simulation}
-
-Document the models, sources, loads, instruments, analysis settings, and initial conditions. Show readable screenshots/plots rather than the entire desktop.
-
-\begin{table}[H]
-\centering
-\caption{Simulation test plan.}
-\begin{tabularx}{\textwidth}{@{}lXXl@{}}
-\toprule
-\textbf{Test} & \textbf{Input/condition} & \textbf{Quantity recorded} & \textbf{Expected result} \\
-\midrule
-DC operating point & Replace & Node voltages/currents & Replace \\
-Transient analysis & Replace & Amplitude, frequency, distortion & Replace \\
-AC analysis & Replace & Gain and cutoff/resonance & Replace \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\figureplaceholder{Insert a labelled simulation waveform or frequency-response plot.}{Representative Multisim result.}
-
-\section{Hardware Implementation}
-
-Describe the construction sequence, grounding, decoupling, wiring, pinout verification, and staged testing. Include a clear top-view photograph and a close-up of the critical stage.
-
-\figureplaceholder{Insert an original, well-lit photograph of the prototype with major blocks labelled.}{Completed hardware prototype.}
-
-\subsection{Bill of Materials}
-
-\begin{longtable}{@{}clllr@{}}
-\caption{Bill of materials.}\\
-\toprule
-\textbf{S. No.} & \textbf{Component} & \textbf{Value/model} & \textbf{Quantity} & \textbf{Approx. cost (INR)} \\
-\midrule
-\endfirsthead
-\toprule
-\textbf{S. No.} & \textbf{Component} & \textbf{Value/model} & \textbf{Quantity} & \textbf{Approx. cost (INR)} \\
-\midrule
-\endhead
-1 & Replace & Replace & 1 & 0 \\
-2 & Replace & Replace & 1 & 0 \\
-\midrule
-\multicolumn{4}{r}{\textbf{Total}} & \textbf{0} \\
-\bottomrule
-\end{longtable}
-
-\section{Experimental Procedure and Results}
-
-State the instrument model/range where available, connection method, supply condition, signal settings, and the order of measurements. Do not report values that were not measured.
-
-\begin{table}[H]
-\centering
-\caption{Comparison of calculated, simulated, and measured results.}
-\begin{tabularx}{\textwidth}{@{}Xllll@{}}
-\toprule
-\textbf{Parameter} & \textbf{Calculated} & \textbf{Simulated} & \textbf{Measured} & \textbf{Error (\%)} \\
-\midrule
-Replace with parameter 1 & -- & -- & -- & -- \\
-Replace with parameter 2 & -- & -- & -- & -- \\
-Replace with parameter 3 & -- & -- & -- & -- \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-Discuss discrepancies using component tolerances, parasitic effects, instrument loading, model limitations, wiring, noise, temperature, and measurement uncertainty as applicable.
-
-\section{Troubleshooting and Design Iterations}
-
-\begin{table}[H]
-\centering
-\caption{Troubleshooting log.}
-\begin{tabularx}{\textwidth}{@{}p{2.5cm}XXX@{}}
-\toprule
-\textbf{Date/stage} & \textbf{Observed problem} & \textbf{Diagnostic evidence and root cause} & \textbf{Corrective action and outcome} \\
-\midrule
-Replace & Replace & Replace & Replace \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\section{Safety, Limitations, and Future Improvements}
-
-Describe low-voltage electrical safety, device power limits, thermal concerns, short-circuit protection, prototype limitations, and realistic improvements. State that direct mains wiring was not used on the breadboard.
-
-\section{Team Contributions}
-
-\begin{table}[H]
-\centering
-\caption{Individual contribution record.}
-\begin{tabularx}{\textwidth}{@{}lXXl@{}}
-\toprule
-\textbf{Student} & \textbf{Primary responsibilities} & \textbf{Evidence/files produced} & \textbf{Contribution (\%)} \\
-\midrule
-\studentone & Replace & Replace & -- \\
-\studenttwo & Replace & Replace & -- \\
-\studentthree & Replace & Replace & -- \\
-\studentfour & Replace & Replace & -- \\
-\studentfive & Replace or delete row & Replace & -- \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\section{Conclusion}
-
-Summarize whether each target specification and the assigned minimum success criterion were achieved. Report the most important measured values and one limitation. Do not introduce new results in the conclusion.
-
-\bibliographystyle{ieeetr}
-\bibliography{references}
-
+% Appendices
 \appendix
-\section{Additional Waveforms and Data}
+\input{appendices/appendixA_multisim_checklist}
+\input{appendices/appendixB_raw_simulation_data}
+\input{appendices/appendixC_component_datasheets}
+\input{appendices/appendixD_additional_waveforms}
 
-Place supporting oscilloscope screenshots, repeated trials, data tables, calculations, or pinout notes here. Every appendix item must be referenced from the main report.
+% Bibliography
+\begin{thebibliography}{9}
+
+\bibitem{ref1}
+P. Horowitz and W. Hill, \textit{The Art of Electronics}, 3rd ed. Cambridge University Press, 2015.
+
+\bibitem{ref2}
+A. S. Sedra and K. C. Smith, \textit{Microelectronic Circuits}, 7th ed. Oxford University Press, 2014.
+
+\bibitem{ref3}
+R. L. Boylestad and L. Nashelsky, \textit{Electronic Devices and Circuit Theory}, 11th ed. Pearson, 2013.
+
+\bibitem{ref4}
+S. Franco, \textit{Design with Operational Amplifiers and Analog Integrated Circuits}, 4th ed. McGraw-Hill, 2014.
+
+\end{thebibliography}
+
+\clearpage
+\chapter*{Project Repository}
+\phantomsection
+\addcontentsline{toc}{chapter}{Project Repository}
+
+The complete source files and project showcase are available at:
+
+\noindent\href{https://github.com/}{GitHub Repository: [Insert repository link here]}
+
+\noindent\href{https://github.com/}{GitHub Pages Website: [Insert pages link here]}
+
+\clearpage
+\chapter*{Project File Structure}
+\phantomsection
+\addcontentsline{toc}{chapter}{Project File Structure}
+
+The following structure represents the overall organization of the project.
+
+\begin{lstlisting}[style=treestyle]
+agc_microphone_preamplifier/
+|-- .gitignore
+|-- main.tex
+|-- README.md
+|-- references.bib
+|-- appendices/
+| |-- appendixA_multisim_checklist.tex
+| |-- appendixB_raw_simulation_data.tex
+| |-- appendixC_component_datasheets.tex
+| -- appendixD_additional_waveforms.tex |-- assets/ |-- chapters/ | |-- chapter01_introduction.tex | |-- chapter02_problem_definition.tex | |-- chapter03_theory.tex | |-- chapter04_system_architecture.tex | |-- chapter05_circuit_design.tex | |-- chapter06_multisim_simulation.tex | |-- chapter07_hardware_implementation.tex | |-- chapter08_experimental_results.tex | |-- chapter09_troubleshooting.tex | |-- chapter10_safety_limitations.tex | |-- chapter11_team_contributions.tex |-- chapter12_conclusion.tex
+|-- config/
+| |-- commands.tex
+| |-- formatting.tex
+| |-- glossary.tex
+| |-- packages.tex
+| -- project_info.tex |-- data/ | |-- processed/ | | |-- calculated_results.csv | |-- measured_results.csv
+| -- raw/ | |-- dc_operating_point.csv | |-- frequency_response.csv |-- transient_results.csv
+|-- figures/
+| |-- diagrams/
+| | |-- agc_block_diagram.tex
+| | |-- agc_preamplifier_schematic.tex
+| | -- system_block_diagram.tex | |-- hardware/ | |-- logo/ | |-- klh_logo.png
+| -- multisim/ |-- frontmatter/ | |-- abbreviations.tex | |-- abstract.tex | |-- acknowledgements.tex | |-- certificate.tex | |-- declaration.tex |-- titlepage.tex
+|-- multisim/
+| -- simulation_notes.txt |-- output/ |-- build/
+-- tables/ |-- bill_of_materials.tex |-- component_values.tex |-- hardware_results.tex |-- simulation_results.tex |-- simulation_setup.tex |-- target_specifications.tex |-- test_points.tex-- troubleshooting_log.tex
+\end{lstlisting}
 
 \end{document}
