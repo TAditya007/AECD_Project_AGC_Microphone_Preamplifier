@@ -1,0 +1,37 @@
+% =====================================================
+% CONCEPTUAL / REFERENCE DIAGRAM ONLY.
+% This is a generic AGC feedback-loop block diagram used for
+% explanatory purposes in Chapter 4. It illustrates the
+% textbook-level structure of an AGC loop (level detection,
+% control-voltage generation, gain adjustment) and does NOT
+% represent the team's actual implemented circuit. No component
+% values or implementation-specific detail are assigned here.
+% =====================================================
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    node distance=1.0cm and 1.2cm,
+    block/.style={rectangle, draw, thick, minimum height=1.0cm, minimum width=2.5cm, align=center, fill=gray!8},
+    sum/.style={circle, draw, thick, minimum size=0.7cm},
+    every node/.style={font=\small}
+]
+    \node[block] (vga) {Variable-Gain\\Amplifier (VGA)};
+    \node[block, right=1.6cm of vga] (det) {Level / Envelope\\Detector};
+    \node[sum, below=1.6cm of det] (cmp) {$\Sigma$};
+    \node[block, below=1.6cm of vga, minimum width=3.0cm] (ctrl) {Control-Voltage\\Generator (Attack/Release)};
+
+    \node[left=1.2cm of vga, font=\footnotesize] (in) {Input};
+    \node[right=1.2cm of det, font=\footnotesize] (out) {Output};
+
+    \draw[-{Latex}, thick] (in) -- (vga);
+    \draw[-{Latex}, thick] (vga) -- (det);
+    \draw[-{Latex}, thick] (det) -- (out);
+    \draw[-{Latex}, thick] (det.south) -- (cmp.north);
+    \node[below=0.55cm of cmp, font=\footnotesize, align=center] (ref) {Reference\\threshold};
+    \draw[-{Latex}, thick] (ref) -- (cmp);
+    \draw[-{Latex}, thick] (cmp) -- (ctrl.east);
+    \draw[-{Latex}, thick] (ctrl) -- (vga.south) node[midway, left, font=\footnotesize\itshape] {control voltage};
+\end{tikzpicture}
+\caption{Conceptual (reference) AGC feedback-loop block diagram, following the general three-function structure (level detection, control-voltage generation, gain adjustment) described in Chapter~\ref{ch:theory}. \textbf{This diagram is generic and illustrative; it is not the project's final implemented circuit.}}
+\label{fig:agc-block}
+\end{figure}

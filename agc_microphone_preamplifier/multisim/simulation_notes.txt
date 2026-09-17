@@ -1,0 +1,22 @@
+AGC MICROPHONE PREAMPLIFIER -- MULTISIM SIMULATION NOTES
+==========================================================
+STATUS: No simulation has been performed yet. This file is a
+placeholder describing what should be recorded here once the
+team runs the Multisim simulation described in Chapter 6
+(chapters/chapter06_multisim_simulation.tex).
+
+To be filled in once available:
+- Multisim version used
+- Circuit file name / location
+- Component models used (op-amp, transistor/VCA, diode) and
+  their SPICE model source
+- Analyses run (DC operating point, AC sweep, transient) and
+  the settings used for each (sweep range, step size, source
+  amplitude, simulation time, etc.)
+- Any convergence issues or simulation warnings encountered,
+  and how they were resolved
+- Location of exported data/screenshots (see data/raw/,
+  data/processed/, and Appendix B)
+
+Do not record simulated values here (or anywhere in this report)
+that were not actually produced by running the simulation.

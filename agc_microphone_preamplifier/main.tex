@@ -27,8 +27,7 @@
 \usepackage{microtype}
 \usepackage[normalem]{ulem}
 \usepackage{listings}
-\usepackage[backend=biber,style=ieee]{biblatex}
-\usetikzlibrary{calc}
+\usetikzlibrary{calc,positioning,arrows.meta}
 \usepackage[hidelinks]{hyperref}
 \usepackage{bookmark}
 
@@ -150,6 +149,12 @@ captionpos=b
 }
 
 % -------------------------------------------------
+% Inline text placeholder helper (for project-specific
+% content that cannot be written without team data)
+% -------------------------------------------------
+\newcommand{\placeholder}[1]{\textit{\textcolor{gray!60!black}{[#1 --- to be completed by the project team]}}}
+
+% -------------------------------------------------
 % Document
 % -------------------------------------------------
 \begin{document}
@@ -215,6 +220,12 @@ R. L. Boylestad and L. Nashelsky, \textit{Electronic Devices and Circuit Theory}
 
 \bibitem{ref4}
 S. Franco, \textit{Design with Operational Amplifiers and Analog Integrated Circuits}, 4th ed. McGraw-Hill, 2014.
+
+\bibitem{ref5}
+P. R. Gray, P. J. Hurst, S. H. Lewis, and R. G. Meyer, \textit{Analysis and Design of Analog Integrated Circuits}, 5th ed. Wiley, 2009.
+
+\bibitem{ref6}
+D. Self, \textit{Small Signal Audio Design}, 3rd ed. Routledge, 2020.
 
 \end{thebibliography}
 

@@ -1,0 +1,34 @@
+% =====================================================
+% Chapter 1: Introduction
+% =====================================================
+\chapter{Introduction}
+\label{ch:introduction}
+
+Microphones convert acoustic pressure variations into a corresponding electrical signal, typically at a very low amplitude (from tens of microvolts up to a few hundred millivolts, depending on the transducer type, distance from the sound source, and loudness of the source). Before this signal can be recorded, transmitted, or processed further, it must be amplified to a usable line level, and this task is performed by a microphone preamplifier.
+
+A significant practical difficulty in microphone amplification is that the input level is not constant. Distance from the microphone, speaker loudness, and the acoustic environment can all cause the input signal amplitude to vary by tens of decibels during a single recording session. A conventional fixed-gain preamplifier cannot accommodate this variation without compromise: a gain high enough to amplify a quiet, distant source adequately will drive the amplifier into clipping when the source is loud or close, while a gain low enough to avoid clipping on loud passages will leave quiet passages amplified to a level dominated by noise.
+
+An \textbf{Automatic Gain Control (AGC)} circuit addresses this problem by continuously monitoring the output (or input) signal level and adjusting the amplifier's gain in real time, so that the output level is held within a desired range regardless of variation in the input amplitude. AGC systems are used widely in audio equipment, radio receivers, telecommunication systems, and instrumentation wherever a wide dynamic range at the input must be compressed into a narrower, more manageable range at the output.
+
+\section{Project Context}
+
+This report documents the design, simulation, and hardware realisation of an \projecttitle, undertaken as part of the course 25EC1302E -- Analog Electronic Circuit Design (Project \projectid, Batch \batchnumber, \comapping) during \academicyear. The project combines the theory of operational-amplifier-based amplification with feedback-based gain control to build a preamplifier stage whose gain automatically compensates for varying microphone input levels.
+
+\section{Objectives}
+
+The general objectives of this project are to:
+\begin{itemize}
+    \item Understand and apply the operating principles of automatic gain control in the context of audio preamplification.
+    \item Design a microphone preamplifier stage with adequate gain, bandwidth, and noise performance for the assigned application.
+    \item Design a gain-control feedback loop (envelope/level detection and control-voltage generation) that compresses a wide range of input levels into a narrower output range.
+    \item Verify the design through circuit simulation (Multisim) prior to hardware construction.
+    \item Construct and test a working hardware prototype, and compare calculated, simulated, and measured results.
+\end{itemize}
+
+%% TODO: If the instructor assigned a specific minimum success criterion
+%% or numeric specification for this project, state it here explicitly
+%% and cross-reference Chapter 2 (Problem Definition and Specifications).
+
+\section{Report Organisation}
+
+Chapter~\ref{ch:problem} defines the problem and the target specifications. Chapter~\ref{ch:theory} reviews the theoretical background of preamplifier and AGC design. Chapter~\ref{ch:architecture} presents the system architecture. Chapter~\ref{ch:circuitdesign} presents the circuit design and component selection. Chapter~\ref{ch:simulation} describes the Multisim simulation methodology and results. Chapter~\ref{ch:hardware} describes the hardware implementation. Chapter~\ref{ch:results} presents the experimental results. Chapter~\ref{ch:troubleshooting} documents the troubleshooting process. Chapter~\ref{ch:safety} discusses safety, limitations, and future improvements. Chapter~\ref{ch:contributions} records individual team contributions, and Chapter~\ref{ch:conclusion} concludes the report.

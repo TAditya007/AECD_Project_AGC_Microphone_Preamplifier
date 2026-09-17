@@ -1,0 +1,32 @@
+% =====================================================
+% Chapter 9: Troubleshooting and Design Iterations
+% General troubleshooting methodology; the actual log of
+% issues encountered by the team is project-specific and
+% left as a placeholder.
+% =====================================================
+\chapter{Troubleshooting and Design Iterations}
+\label{ch:troubleshooting}
+
+\section{General Troubleshooting Methodology}
+
+A systematic approach to troubleshooting an analog circuit of this type generally proceeds from the supply inward to the signal path \cite{ref1,ref4}:
+\begin{enumerate}
+    \item \textbf{Verify power}: confirm supply voltages and current draw at each rail before suspecting the signal path.
+    \item \textbf{Verify DC bias}: check the quiescent operating point of every active device against the design calculations of Chapter~\ref{ch:circuitdesign}.
+    \item \textbf{Isolate stages}: inject a known test signal progressively later in the signal chain (or progressively earlier) to localise which stage is not behaving as expected.
+    \item \textbf{Check for oscillation or instability}, particularly around the AGC feedback loop, which is more prone to instability than a simple fixed-gain stage.
+    \item \textbf{Re-check component values and orientation} (e.g. electrolytic capacitor polarity, diode/transistor pinout) against the schematic.
+    \item \textbf{Document every problem, its diagnosis, and its resolution}, so that design iterations are traceable.
+\end{enumerate}
+
+\section{Troubleshooting Log}
+
+Table~\ref{tab:troubleshooting} is structured to record the actual issues encountered during simulation and hardware bring-up, their diagnosis, and their resolution. It is currently empty because this report was prepared before (or without access to) the team's build and debug log.
+
+\input{tables/troubleshooting_log}
+
+%% TODO: Populate the troubleshooting log above with real entries as
+%% issues are encountered and resolved during simulation and hardware
+%% bring-up. Each entry should include the observed symptom, the
+%% diagnostic evidence gathered, the identified root cause, and the
+%% corrective action taken.

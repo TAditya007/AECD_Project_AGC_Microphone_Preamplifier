@@ -1,0 +1,34 @@
+% =====================================================
+% Chapter 8: Experimental Results
+% General measurement procedure; actual measured values are
+% project-specific and left as placeholders. No fabricated
+% measurement data is included.
+% =====================================================
+\chapter{Experimental Results}
+\label{ch:results}
+
+\section{Measurement Procedure}
+
+A representative measurement procedure for verifying an AGC microphone preamplifier prototype, to be adapted and completed by the team with the actual instruments used, is as follows:
+\begin{enumerate}
+    \item Record the instrument model/range used for signal generation (function generator or calibrated microphone/speaker source), voltage measurement (DMM), and waveform observation (CRO/oscilloscope).
+    \item Verify the DC supply condition and quiescent (no-signal) operating point at each designated test point (Table~\ref{tab:test-points}) before applying an input signal.
+    \item Apply a known input signal at increasing amplitude steps spanning the specified input range, and record the corresponding output amplitude at each step to characterise the gain-compression behaviour.
+    \item Measure the frequency response of the preamplifier stage (with AGC action disabled or at a fixed operating point, if possible) to verify bandwidth.
+    \item Measure attack and release time by applying a step change in input amplitude and observing the time taken for the output to settle within the target band.
+    \item Record all measurements only as actually observed; do not report a value that was not measured.
+\end{enumerate}
+
+\section{Results}
+
+Table~\ref{tab:hardware-results} is structured to record the measured hardware results and compare them with the calculated and simulated values from Chapters~\ref{ch:circuitdesign} and~\ref{ch:simulation}. It is currently empty because no hardware measurements have yet been taken.
+
+\input{tables/hardware_results}
+
+%% TODO: Populate the table above, and the corresponding CSV files in
+%% data/raw/ and data/processed/, with the actual measured values only.
+%% Do not fill in placeholder or estimated numbers.
+
+\section{Discussion of Results}
+
+\placeholder{Once measurements are available, discuss any discrepancy between calculated, simulated, and measured results, considering component tolerances, parasitic effects, instrument loading, model limitations in Multisim, wiring, ambient noise, temperature, and measurement uncertainty, as applicable}

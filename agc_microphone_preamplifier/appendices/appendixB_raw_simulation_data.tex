@@ -1,0 +1,25 @@
+% =====================================================
+% Appendix B: Raw Simulation Data
+% No simulation has been run yet -- this appendix explains
+% where such data should be placed once available, rather
+% than presenting fabricated data.
+% =====================================================
+\chapter{Raw Simulation Data}
+\label{app:raw-sim-data}
+
+This appendix is reserved for raw data exported directly from Multisim (e.g. DC operating-point node listings, AC-sweep gain/phase tables, transient time-series data). No simulation has yet been performed on the finalised circuit, so no data is presented here.
+
+Once available, raw exported data files should be placed in:
+\begin{itemize}
+    \item \texttt{data/raw/dc\_operating\_point.csv}
+    \item \texttt{data/raw/frequency\_response.csv}
+    \item \texttt{data/raw/transient\_results.csv}
+\end{itemize}
+and any derived/processed results (e.g. calculated error against hand calculations) in:
+\begin{itemize}
+    \item \texttt{data/processed/calculated\_results.csv}
+    \item \texttt{data/processed/measured\_results.csv}
+\end{itemize}
+These CSV files currently contain header rows only (see the repository's \texttt{data/} directory); they must be populated only with data actually exported from Multisim or measured on the hardware prototype, never with estimated or illustrative values.
+
+\placeholder{Once simulation is complete, either paste a compact summary table of the key raw results here, or reference the CSV files above with a one-line description of each}

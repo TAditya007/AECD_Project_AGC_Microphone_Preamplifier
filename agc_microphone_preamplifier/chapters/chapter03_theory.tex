@@ -1,0 +1,69 @@
+% =====================================================
+% Chapter 3: Background and Operating Principle
+% General, textbook-level theory only. No project-specific
+% component values or results are included here.
+% =====================================================
+\chapter{Background and Operating Principle}
+\label{ch:theory}
+
+\section{Microphone Signal Characteristics}
+
+Microphones produce a small-signal AC voltage proportional to acoustic pressure. Typical open-circuit output levels range from tens of microvolts to a few hundred millivolts, depending on transducer type (dynamic, condenser, electret), distance from the source, and source loudness \cite{ref1,ref2}. A preamplifier for such a source must generally provide:
+\begin{itemize}
+    \item \textbf{High input impedance}, so as not to load the microphone's source impedance and cause signal loss;
+    \item \textbf{Low input-referred noise}, since the useful signal is small and any noise introduced by the first stage is amplified along with it;
+    \item \textbf{Adequate, and in this project's case, variable gain}, to raise the signal to a usable line level while accommodating input-level variation;
+    \item \textbf{Sufficient bandwidth and low distortion} over the audio frequency range of interest.
+\end{itemize}
+
+\section{Basic Amplifier Gain Stage}
+
+A non-inverting operational-amplifier stage is commonly used as the core gain element of a preamplifier because of its high input impedance and well-defined, resistor-set gain \cite{ref2,ref4}. For an ideal op-amp in the standard non-inverting configuration with feedback resistor $R_f$ and ground resistor $R_g$, the closed-loop voltage gain is
+\begin{equation}
+    A_v = 1 + \frac{R_f}{R_g}.
+    \label{eq:noninverting_gain}
+\end{equation}
+In an AGC preamplifier, one or both of the elements that set this gain (or an equivalent gain-determining element, depending on the topology chosen) are replaced with, or supplemented by, a voltage- or current-controlled element so that $A_v$ can be varied electronically in response to a control signal, rather than being fixed by static resistor values.
+
+\section{Automatic Gain Control: General Principle}
+
+An AGC system forms a closed feedback loop around (or ahead of) the variable-gain stage, consisting conceptually of three functions \cite{ref5,ref6}:
+
+\begin{enumerate}
+    \item \textbf{Level/envelope detection} -- the instantaneous or short-term average magnitude of the signal (input or output) is estimated, typically using a rectifier followed by a low-pass filter (peak detector), or an RMS-to-DC converter for RMS-based control.
+    \item \textbf{Control voltage generation} -- the detected level is compared with a reference (threshold), and the difference is converted, often through further filtering and possibly a compression-ratio-setting network, into a DC control voltage or current.
+    \item \textbf{Gain adjustment} -- the control signal varies the gain of a voltage-controlled amplifier (VCA) or an equivalent variable-gain element, so that when the detected level exceeds the threshold, gain is reduced (and vice versa), holding the output level closer to a target value than the input level would otherwise allow.
+\end{enumerate}
+
+This is a negative-feedback (or, in feed-forward variants, an open-loop level-anticipating) control system, and general feedback-system considerations -- loop gain, stability, and response speed -- therefore apply to its design \cite{ref5}.
+
+\subsection{Feedback versus Feed-Forward AGC}
+
+In a \emph{feedback} AGC arrangement, the gain-control signal is derived from the amplifier's \emph{output}, so that the loop directly regulates the quantity of interest, at the cost of the amplifier momentarily overshooting the target level before the loop responds. In a \emph{feed-forward} arrangement, the control signal is derived from the \emph{input}, allowing the gain to be adjusted in anticipation of a level change, generally at the cost of a more complex, matched signal/control path \cite{ref6}.
+
+\subsection{Attack and Release Time}
+
+The low-pass filter (or integrator) in the level-detection path sets two characteristic time constants:
+\begin{itemize}
+    \item \textbf{Attack time} -- how quickly the gain is reduced in response to a sudden increase in signal level;
+    \item \textbf{Release time} -- how quickly the gain is restored after the signal level drops.
+\end{itemize}
+These time constants trade off against each other and against signal quality: an attack time that is too fast can distort low-frequency waveforms (since the detector begins to track individual cycles rather than the envelope), while an attack time that is too slow allows transient overshoot; a release time that is too fast can produce audible ``pumping'' or gain modulation, while one that is too slow leaves the output level well below target for an extended period after a loud passage \cite{ref6}.
+
+\subsection{Compression Ratio and Threshold}
+
+The relationship between input level and output level above the point at which gain reduction begins (the \emph{threshold}) is described by a \emph{compression ratio}. A high compression ratio approaches a hard output-level limit, while a lower ratio provides a gentler, more transparent gain reduction. The specific threshold and compression-ratio values targeted by this project are project-specific design decisions and are addressed, once fixed, in Chapter~\ref{ch:circuitdesign}.
+
+\section{Variable-Gain Element Options}
+
+Several circuit techniques are commonly used to implement an electronically variable gain within an otherwise conventional op-amp gain stage \cite{ref1,ref5,ref6}:
+\begin{itemize}
+    \item \textbf{JFET as a voltage-controlled resistor}, operated in its triode (ohmic) region within the feedback network of an op-amp gain stage, so that the gate-source control voltage varies the effective feedback or ground resistance and hence the gain.
+    \item \textbf{Dedicated voltage-controlled amplifier (VCA) integrated circuits}, which provide a gain that is a well-characterised (often exponential, i.e. dB-linear) function of a control voltage or current, generally offering lower distortion and more predictable control-law behaviour than a discrete JFET solution.
+    \item \textbf{Diode- or optocoupler-based gain-control elements}, in which a control current varies the resistance or attenuation presented to the signal path.
+\end{itemize}
+The specific gain-control element selected for this project, and the rationale for that choice, is documented in Chapter~\ref{ch:circuitdesign} once the team's component selection is finalised. \placeholder{State here which of the above (or other) gain-control technique the assigned/chosen design uses, once decided}
+
+\section{Summary}
+
+This chapter has reviewed, at a general textbook level, the operating principles that any AGC microphone preamplifier design must apply: a low-noise, adequately biased preamplifier stage; a level-detection and control-voltage generation path with appropriately chosen attack/release behaviour; and a variable-gain element that responds to that control signal. Chapter~\ref{ch:architecture} applies these principles to the system-level architecture adopted for this project, and Chapter~\ref{ch:circuitdesign} applies them to the specific circuit and component values chosen by the team.

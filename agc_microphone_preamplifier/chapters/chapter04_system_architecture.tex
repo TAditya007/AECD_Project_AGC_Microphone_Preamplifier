@@ -1,0 +1,34 @@
+% =====================================================
+% Chapter 4: System Architecture
+% =====================================================
+\chapter{System Architecture}
+\label{ch:architecture}
+
+This chapter presents the system-level architecture of an AGC microphone preamplifier in general/conceptual terms, before the specific circuit realisation is discussed in Chapter~\ref{ch:circuitdesign}. The block diagrams in this chapter illustrate the functional signal flow common to this class of circuit and are \textbf{conceptual reference diagrams only}: they do not represent the team's final implemented circuit, and no component values or implementation-specific details are assigned to them. The team's actual implemented block diagram, once finalised, should replace or supplement these figures.
+
+\section{Overall System Block Diagram}
+
+Figure~\ref{fig:system-block} shows the overall signal path from the microphone to the system output, including the AGC feedback loop as a single functional block. Each block represents a function that must be realised by the final circuit; the specific stage-by-stage implementation is presented in Chapter~\ref{ch:circuitdesign}.
+
+\input{figures/diagrams/system_block_diagram}
+
+\section{AGC Feedback Loop -- Detailed Block Diagram}
+
+Figure~\ref{fig:agc-block} expands the ``Variable-Gain Stage with AGC Feedback'' block of Figure~\ref{fig:system-block} into its constituent functional blocks, following the general three-function AGC structure introduced in Chapter~\ref{ch:theory} (level detection, control-voltage generation, and gain adjustment).
+
+\input{figures/diagrams/agc_block_diagram}
+
+\section{Description of Functional Blocks}
+
+\begin{itemize}
+    \item \textbf{Microphone (input transducer)} -- converts acoustic pressure to a small-signal AC voltage; treated as a Th\'{e}venin source with its own output impedance and noise characteristics.
+    \item \textbf{Input Buffer / Preamplifier Stage} -- provides high input impedance and initial low-noise gain, setting up the signal for the variable-gain stage.
+    \item \textbf{Variable-Gain Stage} -- an amplifier stage whose gain can be varied electronically by a control signal (see Chapter~\ref{ch:theory} for candidate implementations).
+    \item \textbf{Level/Envelope Detector} -- estimates the magnitude of the (typically output) signal over a short time window.
+    \item \textbf{Reference/Threshold Comparison and Control Voltage Generator} -- compares the detected level with a target threshold and produces a smoothed DC control signal, shaped by the attack/release filtering discussed in Chapter~\ref{ch:theory}.
+    \item \textbf{Output Buffer} -- isolates the variable-gain stage from the load and delivers the final output signal.
+\end{itemize}
+
+\section{Mapping to the Implemented Circuit}
+
+\placeholder{Once the team's final schematic is available, add a short paragraph here mapping each block above to the corresponding stage(s) in the schematic of Chapter~\ref{ch:circuitdesign} (e.g. ``the Variable-Gain Stage is realised using an op-amp with a JFET in its feedback path, Q1'')}

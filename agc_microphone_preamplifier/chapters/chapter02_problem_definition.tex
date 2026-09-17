@@ -1,0 +1,29 @@
+% =====================================================
+% Chapter 2: Problem Definition and Specifications
+% =====================================================
+\chapter{Problem Definition and Specifications}
+\label{ch:problem}
+
+\section{Engineering Problem}
+
+A fixed-gain microphone preamplifier is unable to accommodate the wide dynamic range typically produced by a microphone source, since:
+\begin{itemize}
+    \item A gain set high enough to give an adequate signal-to-noise ratio (SNR) for a quiet or distant source will overdrive (clip) the amplifier output when the source becomes louder or closer.
+    \item A gain set low enough to avoid clipping on the loudest expected input will produce an output level for quiet input that is dominated by amplifier and downstream noise.
+\end{itemize}
+
+The engineering problem addressed by this project is therefore to design a preamplifier whose gain is automatically and continuously adjusted, within defined limits, so that the output signal level remains within an acceptable range across a specified range of input signal levels, without introducing objectionable distortion or an audibly disruptive gain-change artefact.
+
+\section{Intended Use of the Circuit}
+
+The circuit is intended to accept a microphone-level audio signal at its input and deliver a line-level (or otherwise usable) audio output whose amplitude is substantially more consistent than the input, suitable for further processing, recording, or transmission. \placeholder{State the specific intended application context assigned to this project, e.g. public-address microphone, voice-recording front end, communication-system input stage, etc., if one was specified}
+
+\section{Target Specifications}
+
+Table~\ref{tab:target-specs} lists the categories of specification that a complete AGC microphone preamplifier design should state and verify. The numeric targets, tolerances, and the assigned minimum success criterion must be filled in according to the specification given by the course instructor for this batch; they are not available in the materials supplied for this report and are therefore left as placeholders.
+
+\input{tables/target_specifications}
+
+\section{Constraints}
+
+The design is constrained to low-voltage, breadboard-safe operation (see Chapter~\ref{ch:safety}), and to component types and simulation tools available for this course (Multisim for simulation; standard through-hole/breadboard-compatible components for the hardware prototype). \placeholder{Add any further constraints specified by the instructor, e.g. maximum supply voltage, permitted component list, or a specific target microphone/sensor type}

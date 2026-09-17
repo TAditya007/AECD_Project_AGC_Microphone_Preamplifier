@@ -1,0 +1,45 @@
+% =====================================================
+% Chapter 6: Multisim Simulation
+% General simulation methodology; actual simulation setup and
+% results are project-specific and left as placeholders.
+% =====================================================
+\chapter{Multisim Simulation}
+\label{ch:simulation}
+
+\section{Simulation Objectives}
+
+Before hardware construction, the design of Chapter~\ref{ch:circuitdesign} should be verified in Multisim to confirm, at minimum:
+\begin{itemize}
+    \item Correct DC operating (bias) point for every active device, with no device driven outside its safe operating region;
+    \item Nominal (unregulated) gain and frequency response of the preamplifier stage in the absence of gain control;
+    \item Correct AGC behaviour under transient conditions -- i.e., that the output level is compressed towards the target range as the input amplitude is swept or stepped across the specified range;
+    \item Attack and release time behaviour consistent with the values targeted in the design.
+\end{itemize}
+
+\section{General Simulation Methodology}
+
+A representative simulation test plan for this class of circuit includes the analyses summarised in Table~\ref{tab:sim-setup}: a DC operating-point analysis, an AC (frequency-sweep) analysis of the nominal gain stage, and a transient analysis in which the input amplitude is varied (e.g., stepped or swept between the minimum and maximum specified levels) to observe the AGC action on the output envelope.
+
+\input{tables/simulation_setup}
+
+\section{Simulation Results}
+
+Table~\ref{tab:sim-results} is structured to record calculated-versus-simulated comparisons once the simulation has been run against the team's actual circuit. It is currently empty because no simulation has yet been performed on the final design, and no results should be entered here without having actually run the corresponding Multisim analysis.
+
+\input{tables/simulation_results}
+
+\figureplaceholder{%
+    \textbf{Simulation waveform/plot not yet available.}\\[4pt]
+    \footnotesize Insert a labelled Multisim screenshot here (e.g. transient input/output waveform showing gain compression, or an AC gain-vs-frequency plot), once the simulation has been performed.%
+}{Representative Multisim result (placeholder).}
+\label{fig:sim-result}
+
+%% TODO: Replace the placeholder table and figure above with the
+%% team's actual DC operating point, AC, and transient simulation
+%% results once available. Raw exported simulation data (if any)
+%% should be placed in data/raw/ and data/processed/, and referenced
+%% in Appendix B (appendixB_raw_simulation_data.tex).
+
+\section{Discussion}
+
+\placeholder{Once simulation results are available, discuss here whether the simulated gain, AGC threshold, and attack/release behaviour meet the target specifications of Chapter~\ref{ch:problem}, and note any discrepancy between the hand-calculated values of Chapter~\ref{ch:circuitdesign} and the simulated values}

@@ -1,0 +1,39 @@
+% =====================================================
+% Chapter 7: Hardware Implementation
+% General construction practice; actual build details, BOM
+% quantities/costs, and photographs are project-specific and
+% left as placeholders.
+% =====================================================
+\chapter{Hardware Implementation}
+\label{ch:hardware}
+
+\section{General Construction Practice}
+
+Sound analog prototyping practice, applicable regardless of the specific circuit, includes \cite{ref1,ref4}:
+\begin{itemize}
+    \item Building and verifying the circuit stage by stage (e.g., preamplifier stage first, then the level detector, then the full closed loop) rather than assembling the entire circuit before any testing;
+    \item Keeping signal, ground, and supply wiring short and using a solid, low-impedance ground return to minimise hum and noise pickup, which is particularly important given the small signal levels at the microphone input;
+    \item Placing decoupling capacitors close to the supply pins of each active device;
+    \item Verifying the pinout of every IC/transistor against its datasheet before powering the circuit, and checking DC supply rails with a multimeter before injecting any signal;
+    \item Using a current-limited, low-voltage bench supply (or isolated adapter) during bring-up (see Chapter~\ref{ch:safety}).
+\end{itemize}
+
+\section{Construction Sequence}
+
+\placeholder{Describe the actual construction sequence followed by the team: breadboard layout, order in which stages were built and tested, any staged sub-circuit testing performed before full integration}
+
+\figureplaceholder{%
+    \textbf{Hardware photograph not yet available.}\\[4pt]
+    \footnotesize Insert an original, well-lit, top-view photograph of the completed prototype here, with major functional blocks labelled.%
+}{Completed hardware prototype (placeholder).}
+\label{fig:hardware-photo}
+
+\section{Bill of Materials}
+
+Table~\ref{tab:bom} is structured to record the actual components used in the hardware build. It must be completed with real quantities, values/models, and costs once the build is finalised; no BOM entries have been fabricated for this report.
+
+\input{tables/bill_of_materials}
+
+%% TODO: Populate the Bill of Materials above with the actual
+%% components used, their real quantities, and their real
+%% approximate cost. Do not estimate or guess costs.

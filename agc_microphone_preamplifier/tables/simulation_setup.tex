@@ -1,0 +1,22 @@
+% =====================================================
+% Table: Simulation test plan
+% Structure only -- actual conditions/expected results depend
+% on the team's final circuit and target specifications.
+% =====================================================
+\begin{table}[H]
+\centering
+\caption{Simulation test plan.}
+\label{tab:sim-setup}
+\begin{tabularx}{\textwidth}{@{}p{3.6cm}Xp{3.4cm}c@{}}
+\toprule
+\textbf{Test} & \textbf{Input/condition} & \textbf{Quantity recorded} & \textbf{Expected} \\
+\midrule
+DC operating point & No input signal & Node voltages/currents & --- \\
+AC (frequency sweep) & Small-signal sweep & Gain vs.\ frequency & --- \\
+Transient (fixed input) & Constant amplitude & Output amplitude, distortion & --- \\
+Transient (stepped input) & Stepped/swept amplitude & Gain compression, attack/release & --- \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent\placeholder{Specific sweep ranges, source amplitudes, and expected results to be completed once the circuit and target specifications are fixed}

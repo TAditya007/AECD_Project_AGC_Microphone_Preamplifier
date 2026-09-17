@@ -1,0 +1,24 @@
+% =====================================================
+% Appendix A: Multisim Checklist
+% General, reusable checklist. Project-specific sign-off
+% (dates, initials) left blank for the team.
+% =====================================================
+\chapter{Multisim Checklist}
+\label{app:multisim-checklist}
+
+The following checklist is provided as a general aid for verifying a Multisim simulation of an AGC microphone preamplifier before results are recorded in Chapter~\ref{ch:simulation}. Tick and date each item as it is completed.
+
+\begin{itemize}
+    \item[$\square$] Schematic entry matches the finalised design of Chapter~\ref{ch:circuitdesign}, including all component values and reference designators.
+    \item[$\square$] All component models used (op-amp, transistor/VCA, diode) match the datasheet part actually intended for use.
+    \item[$\square$] DC operating point analysis run and all node voltages/currents recorded; no device found outside its safe operating region.
+    \item[$\square$] AC (frequency sweep) analysis run for the nominal gain stage; bandwidth recorded.
+    \item[$\square$] Transient analysis run with a fixed input amplitude; output waveform checked for clipping/distortion.
+    \item[$\square$] Transient analysis run with stepped/swept input amplitude spanning the target input range; AGC compression behaviour observed and recorded.
+    \item[$\square$] Attack and release time estimated from the transient step response and compared with the target specification.
+    \item[$\square$] All simulation screenshots/plots exported at sufficient resolution and labelled with axis units.
+    \item[$\square$] Raw/exported simulation data saved to \texttt{data/raw/} and \texttt{data/processed/} as appropriate, and referenced in Appendix~\ref{app:raw-sim-data}.
+\end{itemize}
+
+\vspace{0.5cm}
+\noindent Checklist completed by: \placeholder{Insert name(s)} \quad Date: \placeholder{Insert date}

@@ -1,0 +1,45 @@
+% =====================================================
+% Chapter 10: Safety, Limitations, and Future Improvements
+% General safety practice and generic, textbook-level
+% discussion of limitations/future work for this class of
+% circuit. Statements are phrased generically and are not
+% presented as verified properties of this specific,
+% not-yet-built prototype.
+% =====================================================
+\chapter{Safety, Limitations, and Future Improvements}
+\label{ch:safety}
+
+\section{Electrical Safety}
+
+This project uses only a low-voltage, isolated bench supply or a faculty-approved low-voltage adapter. \textbf{Direct mains wiring is not used at any point on the breadboard or prototype.} General low-voltage electrical safety practice observed for a project of this kind includes:
+\begin{itemize}
+    \item Confirming supply voltage and polarity with a multimeter before connecting any active device;
+    \item Using a current-limited bench supply during initial power-up of a new or modified circuit;
+    \item Observing device power (dissipation) limits and derating for op-amps, transistors, and resistors, and avoiding sustained operation near a device's absolute maximum ratings;
+    \item Being mindful of thermal effects on components operated near their rated dissipation;
+    \item Disconnecting power before modifying wiring, and avoiding contact with the circuit while it is powered.
+\end{itemize}
+
+\section{General Limitations of AGC Preamplifier Designs}
+
+Designs of this general type commonly involve the following trade-offs and limitations, which the team should evaluate against its own final design once built and tested \cite{ref6}:
+\begin{itemize}
+    \item \textbf{Attack/release trade-off}: as discussed in Chapter~\ref{ch:theory}, faster attack times reduce overshoot but risk audible distortion of low-frequency signals, while faster release times risk audible ``pumping''; a single fixed attack/release setting is necessarily a compromise across different input signal characteristics.
+    \item \textbf{Distortion near the compression threshold}: many analog gain-control elements (e.g. a JFET operated as a voltage-controlled resistor) introduce some non-linearity as the control voltage moves the device away from its most linear operating region, which can increase distortion specifically in the region where gain reduction is active.
+    \item \textbf{Limited dynamic range of the control loop}: a single-stage AGC loop can typically compress a moderate range of input levels; very large dynamic-range requirements may need a multi-stage or digitally assisted approach.
+    \item \textbf{Component tolerance sensitivity}: threshold and time-constant setting resistors/capacitors are subject to standard tolerance, which will cause unit-to-unit variation in the realised threshold and attack/release times.
+    \item \textbf{Prototype-specific limitations}: a breadboard prototype is additionally subject to parasitic capacitance/inductance and looser tolerances than a finished PCB, which can affect high-frequency behaviour and noise performance.
+\end{itemize}
+\placeholder{Once the hardware has been built and tested, replace or supplement the general points above with the specific limitations actually observed in this project's prototype}
+
+\section{Future Improvements}
+
+Directions commonly considered for improving a design of this type include:
+\begin{itemize}
+    \item Replacing a discrete JFET/diode-based gain-control element with a dedicated, more linear VCA IC to reduce control-dependent distortion;
+    \item Adding a digitally controlled or microcontroller-assisted gain-control loop, allowing programmable threshold, attack, and release parameters;
+    \item Extending to a multi-band or RMS-based (rather than peak-based) level detector for more natural-sounding compression;
+    \item Adding output limiting/clipping protection as a secondary safeguard beyond the AGC loop itself;
+    \item Migrating the breadboard prototype to a PCB layout to reduce noise pickup and parasitic effects.
+\end{itemize}
+\placeholder{Add any project-specific future-improvement ideas identified by the team during design, simulation, or testing}

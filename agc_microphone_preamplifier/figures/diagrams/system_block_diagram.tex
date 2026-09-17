@@ -1,0 +1,31 @@
+% =====================================================
+% CONCEPTUAL / REFERENCE DIAGRAM ONLY.
+% This is a generic AGC microphone preamplifier system block
+% diagram used for explanatory purposes in Chapter 4. It does
+% NOT represent the team's actual implemented circuit and
+% carries no component values or implementation-specific detail.
+% Replace/supplement with the team's real system diagram once
+% the design is finalised.
+% =====================================================
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    node distance=1.1cm and 1.3cm,
+    block/.style={rectangle, draw, thick, minimum height=1.1cm, minimum width=2.6cm, align=center, fill=gray!8},
+    every node/.style={font=\small}
+]
+    \node[block] (mic) {Microphone\\(input transducer)};
+    \node[block, right=of mic] (pre) {Input buffer /\\preamplifier stage};
+    \node[block, right=of pre, minimum width=3.4cm] (vga) {Variable-gain stage\\with AGC feedback};
+    \node[block, right=of vga] (out) {Output buffer /\\line-level output};
+
+    \draw[-{Latex}, thick] (mic) -- (pre);
+    \draw[-{Latex}, thick] (pre) -- (vga);
+    \draw[-{Latex}, thick] (vga) -- (out);
+
+    \node[below=0.7cm of vga, font=\footnotesize\itshape] (note) {(AGC feedback loop detailed in Fig.~\ref{fig:agc-block})};
+    \draw[-{Latex}, thick, dashed] (vga.south) -- (note.north);
+\end{tikzpicture}
+\caption{Conceptual (reference) system-level block diagram of an AGC microphone preamplifier. \textbf{This diagram is generic and illustrative; it is not the project's final implemented circuit.}}
+\label{fig:system-block}
+\end{figure}

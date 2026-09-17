@@ -1,0 +1,46 @@
+% =====================================================
+% Chapter 5: Circuit Design
+% General design methodology is presented; actual component
+% values, topology choice, and calculations are project-specific
+% and are left as clearly marked placeholders pending the
+% team's final design.
+% =====================================================
+\chapter{Circuit Design}
+\label{ch:circuitdesign}
+
+\section{Design Methodology}
+
+A general design procedure for an AGC microphone preamplifier, consistent with the architecture of Chapter~\ref{ch:architecture}, proceeds as follows \cite{ref1,ref2,ref4,ref5,ref6}:
+
+\begin{enumerate}
+    \item \textbf{Define the input/output level range} the circuit must accommodate (minimum and maximum expected microphone input, and the desired output level range), from the target specifications of Chapter~\ref{ch:problem}.
+    \item \textbf{Design the fixed-gain (or nominal-gain) preamplifier stage}, selecting an op-amp (or transistor stage) with adequate bandwidth, low noise, and sufficient open-loop gain, and choosing the non-inverting or inverting gain-setting resistors using Eq.~\ref{eq:noninverting_gain} (or the corresponding inverting-gain relation) for the nominal (unity-control) gain.
+    \item \textbf{Select and size the variable-gain element} (e.g., JFET-in-feedback, dedicated VCA IC, or diode-based attenuator, as discussed in Chapter~\ref{ch:theory}), and determine the control-voltage-to-gain relationship for the chosen device from its datasheet or characterisation data.
+    \item \textbf{Design the level/envelope detector}, typically a rectifier (diode or precision rectifier) followed by a low-pass filter, choosing the filter time constant to realise the desired attack time.
+    \item \textbf{Design the control-voltage generation and release-time filtering}, including any threshold-setting reference and compression-ratio-shaping network.
+    \item \textbf{Verify DC bias points and power budget} for all active devices, ensuring operation within safe, low-voltage limits (Chapter~\ref{ch:safety}).
+    \item \textbf{Iterate using simulation} (Chapter~\ref{ch:simulation}) before committing to hardware construction.
+\end{enumerate}
+
+\section{Final Circuit Schematic}
+
+\input{figures/diagrams/agc_preamplifier_schematic}
+
+%% TODO: Once the schematic above is replaced with the team's actual
+%% design, add a short walkthrough here describing signal flow through
+%% the real circuit, referencing labelled test points (see
+%% tables/test_points.tex).
+
+\section{Design Calculations and Component Selection}
+
+Every important resistor, capacitor, bias point, gain, and time-constant calculation for the implemented circuit should be shown in this section, following the general procedure above, together with the standard (E12/E24) component value actually selected and a brief justification. Table~\ref{tab:component-values} provides the structure for recording this; it is currently a placeholder because the team's specific calculations are not available in the materials supplied for this report.
+
+\input{tables/component_values}
+
+\placeholder{Insert the worked calculations here: e.g. preamplifier gain calculation from Eq.~\ref{eq:noninverting_gain}, envelope-detector RC time-constant calculation for the target attack/release time, VCA control-voltage range calculation, and DC bias-point calculations, each with the resulting standard component value and its justification}
+
+\section{Test Points}
+
+Table~\ref{tab:test-points} lists the test points that should be defined on the schematic once finalised, to support the simulation (Chapter~\ref{ch:simulation}) and hardware verification (Chapters~\ref{ch:hardware}--\ref{ch:results}) stages.
+
+\input{tables/test_points}
