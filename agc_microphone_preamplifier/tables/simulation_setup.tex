@@ -1,22 +1,25 @@
 % =====================================================
 % Table: Simulation test plan
-% Structure only -- actual conditions/expected results depend
-% on the team's final circuit and target specifications.
+% Populated with the team's actual planned Multisim test
+% conditions. "Expected result" column shows the project's
+% TARGET/expected behaviour, not measured results -- no
+% simulation has actually been run yet (see Section 6.3).
 % =====================================================
-\begin{table}[H]
+\begin{table}[!htbp]
 \centering
 \caption{Simulation test plan.}
 \label{tab:sim-setup}
-\begin{tabularx}{\textwidth}{@{}p{3.6cm}Xp{3.4cm}c@{}}
+\begin{tabularx}{\textwidth}{@{}p{3.4cm}Xp{3.2cm}X@{}}
 \toprule
-\textbf{Test} & \textbf{Input/condition} & \textbf{Quantity recorded} & \textbf{Expected} \\
+\textbf{Test} & \textbf{Input/condition} & \textbf{Quantity recorded} & \textbf{Target (expected)} \\
 \midrule
 DC operating point & No input signal & Node voltages/currents & --- \\
 AC (frequency sweep) & Small-signal sweep & Gain vs.\ frequency & --- \\
-Transient (fixed input) & Constant amplitude & Output amplitude, distortion & --- \\
-Transient (stepped input) & Stepped/swept amplitude & Gain compression, attack/release & --- \\
+Transient, 10~mV input & 1~kHz sine, 0~V DC offset, 10~mV amplitude & Output amplitude & $\approx$50$\times$ gain, $\approx$0.5~V out \\
+Transient, 50~mV input & 1~kHz sine, 0~V DC offset, 50~mV amplitude & Output amplitude & $\approx$10$\times$ gain, $\approx$0.5~V out \\
+Transient, 100~mV input & 1~kHz sine, 0~V DC offset, 100~mV amplitude & Output amplitude & $\approx$5$\times$ gain, $\approx$0.5~V out \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\noindent\placeholder{Specific sweep ranges, source amplitudes, and expected results to be completed once the circuit and target specifications are fixed}
+\noindent\placeholder{These are the project's target/expected values, not measured or simulated results; Table 6.2 and Section 6.3 remain empty until the simulation is actually run and results recorded}

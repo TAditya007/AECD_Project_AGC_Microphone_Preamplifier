@@ -13,10 +13,11 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{longtable}
+\usepackage{needspace}
 \usepackage{multirow}
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage{titlesec}
+\usepackage[nobottomtitles]{titlesec}
 \usepackage{fancyhdr}
 \usepackage{tocloft}
 \usepackage{xcolor}
@@ -35,22 +36,20 @@
 % Project information
 % -------------------------------------------------
 \newcommand{\projecttitle}{Automatic-Gain-Control Microphone Preamplifier}
-\newcommand{\projectid}{PXX}
-\newcommand{\batchnumber}{--}
-\newcommand{\comapping}{COX}
-\newcommand{\academicyear}{2025--2026, Term 3}
-\newcommand{\facultyname}{[Insert course instructor name here]}
+\newcommand{\batchnumber}{6}
+\newcommand{\teamname}{Team 6}
+\newcommand{\comapping}{CO 2}
+\newcommand{\academicyear}{2026-2027}
+\newcommand{\facultyname}{Dr.Praveen}
 
-\newcommand{\studentone}{[Insert student name 1 here]}
-\newcommand{\idone}{[Insert university ID 1 here]}
-\newcommand{\studenttwo}{[Insert student name 2 here]}
-\newcommand{\idtwo}{[Insert university ID 2 here]}
-\newcommand{\studentthree}{[Insert student name 3 here]}
-\newcommand{\idthree}{[Insert university ID 3 here]}
-\newcommand{\studentfour}{[Insert student name 4 here]}
-\newcommand{\idfour}{[Insert university ID 4 here]}
-\newcommand{\studentfive}{Not applicable}
-\newcommand{\idfive}{--}
+\newcommand{\studentone}{D. Sravya}
+\newcommand{\idone}{2520040075}
+\newcommand{\studenttwo}{K. Bhargava Aditya}
+\newcommand{\idtwo}{2520040077}
+\newcommand{\studentthree}{Rishi Vardhan}
+\newcommand{\idthree}{2520040078}
+\newcommand{\studentfour}{M. Honeysha}
+\newcommand{\idfour}{2520040085}
 
 % -------------------------------------------------
 % Formatting
@@ -58,11 +57,21 @@
 \onehalfspacing
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.5em}
+
+% -------------------------------------------------
+% Page-break quality: avoid stranded headings/lines
+% and avoid ugly stretched spacing on under-full pages
+% -------------------------------------------------
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\raggedbottom
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{2}
 \renewcommand{\arraystretch}{1.2}
 \setlist[itemize]{leftmargin=1.5em,itemsep=2pt}
 \setlength{\emergencystretch}{2em}
+\setlength{\cftbeforechapskip}{0.2em}
 
 \hypersetup{
 colorlinks=false,
@@ -95,9 +104,14 @@ pdfkeywords={AGC, microphone preamplifier, analog circuit design, Multisim}
 \renewcommand{\footrulewidth}{0.4pt}
 }
 
+% Chapters flow continuously (no forced new page per chapter) so that short
+% chapters do not leave large blank areas.
+\titleclass{\chapter}{straight}
 \titleformat{\chapter}[display]
 {\bfseries\Large}
-{\chaptername\ \thechapter}{10pt}{\Large}
+{\chaptername\ \thechapter}{6pt}{\Large}
+\titlespacing*{\chapter}{0pt}{26pt}{14pt}
+\renewcommand{\bottomtitlespace}{0.14\textheight}
 
 % -------------------------------------------------
 % Listings style
@@ -125,7 +139,10 @@ captionpos=b
 % Breakable file-tree listing style
 % -------------------------------------------------
 \lstdefinestyle{treestyle}{
-basicstyle=\ttfamily\footnotesize,
+basicstyle=\ttfamily\fontsize{7.5}{8.6}\selectfont,
+framesep=2pt,
+aboveskip=8pt,
+belowskip=0pt,
 breaklines=true,
 breakatwhitespace=false,
 columns=fullflexible,
@@ -141,9 +158,9 @@ captionpos=b
 % Figure placeholder helper
 % -------------------------------------------------
 \newcommand{\figureplaceholder}[2]{%
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
-\fbox{\parbox[c][5cm][c]{0.88\textwidth}{\centering #1}}
+\fbox{\parbox[c][4cm][c]{0.88\textwidth}{\centering #1}}
 \caption{#2}
 \end{figure}
 }
@@ -152,7 +169,7 @@ captionpos=b
 % Inline text placeholder helper (for project-specific
 % content that cannot be written without team data)
 % -------------------------------------------------
-\newcommand{\placeholder}[1]{\textit{\textcolor{gray!60!black}{[#1 --- to be completed by the project team]}}}
+
 
 % -------------------------------------------------
 % Document
@@ -167,7 +184,6 @@ captionpos=b
 \input{frontmatter/certificate}
 \clearpage
 \input{frontmatter/declaration}
-\clearpage
 \input{frontmatter/acknowledgements}
 \clearpage
 \input{frontmatter/abstract}
@@ -179,7 +195,6 @@ captionpos=b
 \tableofcontents
 \clearpage
 \listoffigures
-\clearpage
 \listoftables
 \clearpage
 
@@ -201,6 +216,7 @@ captionpos=b
 
 % Appendices
 \appendix
+\renewcommand{\chaptername}{Appendix}
 \input{appendices/appendixA_multisim_checklist}
 \input{appendices/appendixB_raw_simulation_data}
 \input{appendices/appendixC_component_datasheets}
@@ -229,7 +245,6 @@ D. Self, \textit{Small Signal Audio Design}, 3rd ed. Routledge, 2020.
 
 \end{thebibliography}
 
-\clearpage
 \chapter*{Project Repository}
 \phantomsection
 \addcontentsline{toc}{chapter}{Project Repository}
@@ -240,13 +255,14 @@ The complete source files and project showcase are available at:
 
 \noindent\href{https://github.com/}{GitHub Pages Website: [Insert pages link here]}
 
-\clearpage
 \chapter*{Project File Structure}
 \phantomsection
 \addcontentsline{toc}{chapter}{Project File Structure}
 
 The following structure represents the overall organization of the project.
 
+\noindent
+\begin{minipage}[t]{0.485\textwidth}
 \begin{lstlisting}[style=treestyle]
 agc_microphone_preamplifier/
 |-- .gitignore
@@ -254,26 +270,73 @@ agc_microphone_preamplifier/
 |-- README.md
 |-- references.bib
 |-- appendices/
-| |-- appendixA_multisim_checklist.tex
-| |-- appendixB_raw_simulation_data.tex
-| |-- appendixC_component_datasheets.tex
-| -- appendixD_additional_waveforms.tex |-- assets/ |-- chapters/ | |-- chapter01_introduction.tex | |-- chapter02_problem_definition.tex | |-- chapter03_theory.tex | |-- chapter04_system_architecture.tex | |-- chapter05_circuit_design.tex | |-- chapter06_multisim_simulation.tex | |-- chapter07_hardware_implementation.tex | |-- chapter08_experimental_results.tex | |-- chapter09_troubleshooting.tex | |-- chapter10_safety_limitations.tex | |-- chapter11_team_contributions.tex |-- chapter12_conclusion.tex
+|   |-- appendixA_multisim_checklist.tex
+|   |-- appendixB_raw_simulation_data.tex
+|   |-- appendixC_component_datasheets.tex
+|   `-- appendixD_additional_waveforms.tex
+|-- assets/
+|-- chapters/
+|   |-- chapter01_introduction.tex
+|   |-- chapter02_problem_definition.tex
+|   |-- chapter03_theory.tex
+|   |-- chapter04_system_architecture.tex
+|   |-- chapter05_circuit_design.tex
+|   |-- chapter06_multisim_simulation.tex
+|   |-- chapter07_hardware_implementation.tex
+|   |-- chapter08_experimental_results.tex
+|   |-- chapter09_troubleshooting.tex
+|   |-- chapter10_safety_limitations.tex
+|   |-- chapter11_team_contributions.tex
+|   `-- chapter12_conclusion.tex
 |-- config/
-| |-- commands.tex
-| |-- formatting.tex
-| |-- glossary.tex
-| |-- packages.tex
-| -- project_info.tex |-- data/ | |-- processed/ | | |-- calculated_results.csv | |-- measured_results.csv
-| -- raw/ | |-- dc_operating_point.csv | |-- frequency_response.csv |-- transient_results.csv
-|-- figures/
-| |-- diagrams/
-| | |-- agc_block_diagram.tex
-| | |-- agc_preamplifier_schematic.tex
-| | -- system_block_diagram.tex | |-- hardware/ | |-- logo/ | |-- klh_logo.png
-| -- multisim/ |-- frontmatter/ | |-- abbreviations.tex | |-- abstract.tex | |-- acknowledgements.tex | |-- certificate.tex | |-- declaration.tex |-- titlepage.tex
-|-- multisim/
-| -- simulation_notes.txt |-- output/ |-- build/
--- tables/ |-- bill_of_materials.tex |-- component_values.tex |-- hardware_results.tex |-- simulation_results.tex |-- simulation_setup.tex |-- target_specifications.tex |-- test_points.tex-- troubleshooting_log.tex
+|   |-- commands.tex
+|   |-- formatting.tex
+|   |-- glossary.tex
+|   |-- packages.tex
+|   `-- project_info.tex
+|-- data/
+|   |-- processed/
+|   |   |-- calculated_results.csv
+|   |   `-- measured_results.csv
+|   `-- raw/
+|       |-- dc_operating_point.csv
+|       |-- frequency_response.csv
+|       `-- transient_results.csv
 \end{lstlisting}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\textwidth}
+\begin{lstlisting}[style=treestyle]
+|-- figures/
+|   |-- diagrams/
+|   |   |-- agc_block_diagram.tex
+|   |   |-- agc_preamplifier_schematic.tex
+|   |   |-- agc_schematic_updated.png
+|   |   `-- system_block_diagram.tex
+|   |-- hardware/
+|   |-- logo/
+|   |   `-- klh_logo.png
+|   `-- multisim/
+|-- frontmatter/
+|   |-- abbreviations.tex
+|   |-- abstract.tex
+|   |-- acknowledgements.tex
+|   |-- certificate.tex
+|   |-- declaration.tex
+|   `-- titlepage.tex
+|-- multisim/
+|   `-- simulation_notes.txt
+|-- output/
+|-- build/
+`-- tables/
+    |-- bill_of_materials.tex
+    |-- component_values.tex
+    |-- hardware_results.tex
+    |-- simulation_results.tex
+    |-- simulation_setup.tex
+    |-- target_specifications.tex
+    |-- test_points.tex
+    `-- troubleshooting_log.tex
+\end{lstlisting}
+\end{minipage}
 
 \end{document}

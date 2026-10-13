@@ -62,7 +62,7 @@ Several circuit techniques are commonly used to implement an electronically vari
     \item \textbf{Dedicated voltage-controlled amplifier (VCA) integrated circuits}, which provide a gain that is a well-characterised (often exponential, i.e. dB-linear) function of a control voltage or current, generally offering lower distortion and more predictable control-law behaviour than a discrete JFET solution.
     \item \textbf{Diode- or optocoupler-based gain-control elements}, in which a control current varies the resistance or attenuation presented to the signal path.
 \end{itemize}
-The specific gain-control element selected for this project, and the rationale for that choice, is documented in Chapter~\ref{ch:circuitdesign} once the team's component selection is finalised. \placeholder{State here which of the above (or other) gain-control technique the assigned/chosen design uses, once decided}
+The specific gain-control element selected for this project, and the rationale for that choice, is documented in Chapter~\ref{ch:circuitdesign} once the team's component selection is finalised. This project uses an N-channel enhancement-mode MOSFET (2N7000, Q1) as the voltage-controlled gain-control element: its channel, in series with R3, is connected in the feedback network of U1A (the VGA stage), and its gate is driven by the control voltage derived by the AGC loop. This places the design in the ``JFET/MOSFET as a voltage-controlled resistor'' category described above, using a MOSFET in place of a JFET.
 
 \section{Summary}
 

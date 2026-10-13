@@ -6,12 +6,14 @@
 \chapter{Multisim Simulation}
 \label{ch:simulation}
 
+This chapter targets the circuit of Figure~\ref{fig:agc-schematic} (Chapter~\ref{ch:circuitdesign}). The structure below is ready for the Multisim screenshots and exported data; no simulation results are included yet, so Section~\ref{sec:sim-results-empty} remains empty rather than holding estimated numbers.
+
 \section{Simulation Objectives}
 
 Before hardware construction, the design of Chapter~\ref{ch:circuitdesign} should be verified in Multisim to confirm, at minimum:
 \begin{itemize}
     \item Correct DC operating (bias) point for every active device, with no device driven outside its safe operating region;
-    \item Nominal (unregulated) gain and frequency response of the preamplifier stage in the absence of gain control;
+    \item Nominal (unregulated) gain and frequency response of the U1A (VGA) stage;
     \item Correct AGC behaviour under transient conditions -- i.e., that the output level is compressed towards the target range as the input amplitude is swept or stepped across the specified range;
     \item Attack and release time behaviour consistent with the values targeted in the design.
 \end{itemize}
@@ -22,7 +24,20 @@ A representative simulation test plan for this class of circuit includes the ana
 
 \input{tables/simulation_setup}
 
+\subsection{Planned Transient Test Conditions and Target Behaviour}
+
+The transient tests are planned using a 1~kHz sine-wave input at 0~V DC offset, at three input amplitudes: 10~mV, 50~mV, and 100~mV. \textbf{The values below are the project's target/expected behaviour, derived from the design intent of Section~\ref{ch:circuitdesign}; they are not measured or simulated results}, since no simulation has yet been run on the final circuit (Section~\ref{sec:sim-results-empty}):
+
+\begin{itemize}
+    \item 10~mV input $\rightarrow$ target overall gain $\approx$50$\times$ $\rightarrow$ target output $\approx$0.5~V;
+    \item 50~mV input $\rightarrow$ target overall gain $\approx$10$\times$ $\rightarrow$ target output $\approx$0.5~V;
+    \item 100~mV input $\rightarrow$ target overall gain $\approx$5$\times$ $\rightarrow$ target output $\approx$0.5~V.
+\end{itemize}
+
+This target behaviour illustrates the intended AGC action: as the input amplitude increases, the overall gain is expected to decrease correspondingly, so that the output amplitude remains approximately constant near the 0.5~V target.
+
 \section{Simulation Results}
+\label{sec:sim-results-empty}
 
 Table~\ref{tab:sim-results} is structured to record calculated-versus-simulated comparisons once the simulation has been run against the team's actual circuit. It is currently empty because no simulation has yet been performed on the final design, and no results should be entered here without having actually run the corresponding Multisim analysis.
 
@@ -31,8 +46,7 @@ Table~\ref{tab:sim-results} is structured to record calculated-versus-simulated 
 \figureplaceholder{%
     \textbf{Simulation waveform/plot not yet available.}\\[4pt]
     \footnotesize Insert a labelled Multisim screenshot here (e.g. transient input/output waveform showing gain compression, or an AC gain-vs-frequency plot), once the simulation has been performed.%
-}{Representative Multisim result (placeholder).}
-\label{fig:sim-result}
+}{Representative Multisim result (placeholder).\label{fig:sim-result}}
 
 %% TODO: Replace the placeholder table and figure above with the
 %% team's actual DC operating point, AC, and transient simulation

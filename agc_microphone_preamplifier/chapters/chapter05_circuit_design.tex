@@ -22,25 +22,46 @@ A general design procedure for an AGC microphone preamplifier, consistent with t
     \item \textbf{Iterate using simulation} (Chapter~\ref{ch:simulation}) before committing to hardware construction.
 \end{enumerate}
 
+\section{Circuit Description}
+\label{sec:circuit-description}
+
+This section describes the implemented circuit shown in Figure~\ref{fig:agc-schematic}.
+
+\textbf{Input and VGA stage:} the input source (XFG1 in simulation, a microphone in hardware) drives R1; R1 and R2 (to ground) form a divider that feeds the non-inverting input of U1A (LM358N, labelled VGA). U1A's output is fed back to its inverting input through R5, and also through the series combination of R3 and the channel of Q1 (2N7000), whose source connects to U1A's output.
+
+\textbf{Peak detector:} U1A's output drives the non-inverting input of U1B (LM358N, labelled Peak Detector). U1B's inverting input is connected to the hold node formed by C1 and R4 (both to ground); U1B's output connects to D1 (1N4148), whose other terminal is the hold node.
+
+\textbf{Control buffer and loop closure:} U2A (LM358N, labelled Control Buffer) is a voltage follower whose non-inverting input is the hold node; its output drives the gate of Q1, closing the AGC loop. U2B is drawn but not wired into the circuit. The circuit is powered from $+12$~V (VCC) and $-12$~V (VEE), and XSC1 monitors the U1A non-inverting input node (channel A) and the U1A output (channel B).
+
+The intended operating principle --- a weak input results in a higher gain and a strong input in a lower gain, holding the output near a target of $\approx$0.5~V --- is realised through this feedback arrangement. Table~\ref{tab:component-values} lists the components.
+
+\placeholder{Please confirm the polarity of D1 and the intended polarity of the control voltage at Q1's gate (an enhancement-mode N-channel MOSFET conducts only for a sufficiently positive gate-source voltage), and whether a resistor to ground at U1A's inverting input was intended; none is visible in the schematic image}
+
 \section{Final Circuit Schematic}
+
+Figure~\ref{fig:agc-schematic} shows the Multisim schematic of the implemented circuit.
 
 \input{figures/diagrams/agc_preamplifier_schematic}
 
-%% TODO: Once the schematic above is replaced with the team's actual
-%% design, add a short walkthrough here describing signal flow through
-%% the real circuit, referencing labelled test points (see
-%% tables/test_points.tex).
-
 \section{Design Calculations and Component Selection}
 
-Every important resistor, capacitor, bias point, gain, and time-constant calculation for the implemented circuit should be shown in this section, following the general procedure above, together with the standard (E12/E24) component value actually selected and a brief justification. Table~\ref{tab:component-values} provides the structure for recording this; it is currently a placeholder because the team's specific calculations are not available in the materials supplied for this report.
+Table~\ref{tab:component-values} lists the components, read from the schematic.
 
 \input{tables/component_values}
 
-\placeholder{Insert the worked calculations here: e.g. preamplifier gain calculation from Eq.~\ref{eq:noninverting_gain}, envelope-detector RC time-constant calculation for the target attack/release time, VCA control-voltage range calculation, and DC bias-point calculations, each with the resulting standard component value and its justification}
+U1A's closed-loop gain depends on the network connected to its inverting input. In this circuit the feedback resistor R5 is in parallel with the series branch of R3 and the voltage-controlled channel resistance of Q1:
+\begin{equation}
+    R_{f,\mathrm{eff}} = R_5 \parallel \left(R_3 + R_{DS(\mathrm{Q1})}(V_G)\right),
+    \label{eq:u1a_gain}
+\end{equation}
+where $V_G$ is the gate voltage supplied by U2A. The resulting gain also depends on the resistance, if any, from the inverting input to ground.
+
+\placeholder{Gain calculation to be verified from the final circuit topology and simulation configuration}
+
+\placeholder{Remaining calculations to be added: the R4--C1 hold-network time constant and the resulting attack/release behaviour, and the DC bias points of U1A, U1B, U2A and Q1}
 
 \section{Test Points}
 
-Table~\ref{tab:test-points} lists the test points that should be defined on the schematic once finalised, to support the simulation (Chapter~\ref{ch:simulation}) and hardware verification (Chapters~\ref{ch:hardware}--\ref{ch:results}) stages.
+Table~\ref{tab:test-points} lists the test points identified on the schematic, to support the simulation (Chapter~\ref{ch:simulation}) and hardware verification (Chapters~\ref{ch:hardware}--\ref{ch:results}) stages.
 
 \input{tables/test_points}

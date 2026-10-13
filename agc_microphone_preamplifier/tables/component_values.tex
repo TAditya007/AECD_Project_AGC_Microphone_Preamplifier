@@ -1,21 +1,37 @@
-% =====================================================
-% Table: Major component selection
-% Structure only -- component references, functions, and
-% calculated/selected values are project-specific.
-% =====================================================
-\begin{table}[H]
-\centering
-\caption{Major component selection.}
-\label{tab:component-values}
-\begin{tabularx}{\textwidth}{@{}lXccc@{}}
+% Component table -- values and designators read from the Multisim schematic
+% (figures/diagrams/agc_schematic_updated.png). Roles follow the wiring as drawn.
+\Needspace{6cm}
+{\footnotesize
+\renewcommand{\arraystretch}{1.05}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{1.6cm}>{\raggedright\arraybackslash}p{8.0cm}>{\raggedright\arraybackslash}p{4.4cm}@{}}
+\caption{Major component selection.}\label{tab:component-values}\\
 \toprule
-\textbf{Ref.} & \textbf{Function} & \textbf{Calculated} & \textbf{Selected} & \textbf{Rating/model} \\
+\textbf{Ref.} & \textbf{Function (as drawn in Figure~\ref{fig:agc-schematic})} & \textbf{Selected value} \\
 \midrule
---- & --- & --- & --- & --- \\
---- & --- & --- & --- & --- \\
---- & --- & --- & --- & --- \\
+\endfirsthead
+\toprule
+\textbf{Ref.} & \textbf{Function} & \textbf{Selected value} \\
+\midrule
+\endhead
 \bottomrule
-\end{tabularx}
-\end{table}
+\endfoot
+\bottomrule
+\endlastfoot
+U1A & VGA stage; non-inverting input from the R1/R2 node, output fed back to the inverting input through R5 and through the R3--Q1 branch & LM358N \\
+U1B & Peak Detector; non-inverting input from U1A's output, inverting input from the C1/R4 hold node, output to D1 & LM358N \\
+U2A & Control Buffer; voltage follower (output tied to inverting input) from the C1/R4 hold node, output to Q1's gate & LM358N \\
+U2B & Drawn on the schematic but not wired into the circuit (unused section) & LM358N \\
+Q1 & Gain-control element; drain to R3, source to U1A's output net, gate driven by U2A's output & 2N7000 \\
+D1 & Diode between the C1/R4 hold node (anode side) and U1B's output (cathode side), as drawn & 1N4148 \\
+R1 & Series resistor from the input source (XFG1) to the U1A non-inverting input node & 8.2~k$\Omega$ \\
+R2 & Resistor from the U1A non-inverting input node to ground & 8.2~k$\Omega$ \\
+R3 & Series resistor between U1A's inverting-input node and Q1's drain & 8.2~k$\Omega$ \\
+R4 & Resistor from the hold node to ground, in parallel with C1 & 47~k$\Omega$ \\
+R5 & Feedback resistor, U1A output to inverting input & 10~k$\Omega$ \\
+C1 & Hold capacitor from the hold node to ground (polarised symbol, + at top) & 1~$\mu$F \\
+Supply & Dual supply (VCC / VEE) & $+12$~V / $-12$~V \\
+Input & Function generator XFG1 in simulation / microphone in hardware & --- \\
+\end{longtable}
+}
 
-\noindent\placeholder{Component references, functions, calculated values, selected standard values, and ratings/models to be completed once the circuit design is finalised}
+\noindent\placeholder{Please confirm against the Multisim file: the polarity of D1, and that no resistor connects U1A's inverting input to ground (none is visible in the schematic image)}

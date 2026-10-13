@@ -30,5 +30,20 @@ Figure~\ref{fig:agc-block} expands the ``Variable-Gain Stage with AGC Feedback''
 \end{itemize}
 
 \section{Mapping to the Implemented Circuit}
+\label{sec:implementation-mapping}
 
-\placeholder{Once the team's final schematic is available, add a short paragraph here mapping each block above to the corresponding stage(s) in the schematic of Chapter~\ref{ch:circuitdesign} (e.g. ``the Variable-Gain Stage is realised using an op-amp with a JFET in its feedback path, Q1'')}
+The functional blocks of Figures~\ref{fig:system-block} and~\ref{fig:agc-block} map onto the implemented circuit of Figure~\ref{fig:agc-schematic} (Chapter~\ref{ch:circuitdesign}) as follows:
+
+\begin{itemize}
+    \item \textbf{Variable-Gain Stage} is realised by \textbf{U1A}, labelled ``VGA'' on the schematic. Its non-inverting input is fed from the R1/R2 node, and its output is fed back to its inverting input through R5 and through the series combination of R3 and the channel of \textbf{Q1} (2N7000 MOSFET), which acts as the voltage-controlled element.
+    \item \textbf{Level/Envelope Detector} is realised by \textbf{U1B}, labelled ``Peak Detector'', together with \textbf{D1} (1N4148) and the C1/R4 hold network. U1B's non-inverting input is U1A's output, its inverting input is the C1/R4 hold node, and its output connects to D1.
+    \item \textbf{Control Voltage Generator} is realised by \textbf{U2A}, labelled ``Control Buffer'': a voltage follower (output tied to its inverting input) that buffers the voltage on the C1/R4 hold node and applies it to the gate of Q1.
+    \item \textbf{Gain adjustment} is applied through Q1: the control voltage at its gate varies the channel resistance of Q1 in U1A's feedback network.
+    \item \textbf{U2B}, the second section of the U2 LM358N package, is drawn but not wired into the circuit.
+\end{itemize}
+
+The generic \textbf{Input Buffer / Preamplifier Stage} and \textbf{Output Buffer} blocks do not correspond to separate stages in this circuit: the input source reaches U1A through the R1/R2 network, and the output observed on the oscilloscope (XSC1 channel B) is taken from the U1A output net.
+
+The overall path is therefore: input source (XFG1 in simulation) $\rightarrow$ R1/R2 $\rightarrow$ U1A (VGA) $\rightarrow$ U1B (Peak Detector) $\rightarrow$ D1 $\rightarrow$ C1/R4 hold node $\rightarrow$ U2A (Control Buffer) $\rightarrow$ Q1 gate $\rightarrow$ U1A's feedback network, closing the AGC loop.
+
+\placeholder{Please confirm this mapping against the Multisim file, in particular the polarity of D1 and the intended loop polarity (whether the control voltage on Q1's gate rises or falls as the input level increases)}

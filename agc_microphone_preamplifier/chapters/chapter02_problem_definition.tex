@@ -18,6 +18,10 @@ The engineering problem addressed by this project is therefore to design a pream
 
 The circuit is intended to accept a microphone-level audio signal at its input and deliver a line-level (or otherwise usable) audio output whose amplitude is substantially more consistent than the input, suitable for further processing, recording, or transmission. \placeholder{State the specific intended application context assigned to this project, e.g. public-address microphone, voice-recording front end, communication-system input stage, etc., if one was specified}
 
+\subsection{Core Operating Principle}
+
+The project's core operating principle is: a weak input signal results in a higher overall gain, and a strong input signal results in a lower overall gain, with the goal of keeping the output level approximately constant around a target of $\approx$0.5~V. This is achieved through the negative-feedback AGC loop described in Chapter~\ref{ch:theory} and realised in Chapter~\ref{ch:circuitdesign}.
+
 \section{Target Specifications}
 
 Table~\ref{tab:target-specs} lists the categories of specification that a complete AGC microphone preamplifier design should state and verify. The numeric targets, tolerances, and the assigned minimum success criterion must be filled in according to the specification given by the course instructor for this batch; they are not available in the materials supplied for this report and are therefore left as placeholders.

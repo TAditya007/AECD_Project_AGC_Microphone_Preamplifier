@@ -1,9 +1,11 @@
 % =====================================================
 % Table: Target specifications
-% Structure only -- numeric targets/tolerances are
-% project-specific and must be supplied by the team/instructor.
+% Populated with the project's actual target/expected values
+% where supplied by the team. Fields not supplied (tolerances,
+% bandwidth, attack/release time, minimum success criterion)
+% remain placeholders -- not fabricated.
 % =====================================================
-\begin{table}[H]
+\begin{table}[!htbp]
 \centering
 \caption{Target specifications.}
 \label{tab:target-specs}
@@ -11,17 +13,23 @@
 \toprule
 \textbf{Parameter} & \textbf{Target} & \textbf{Tolerance} & \textbf{Verification method} \\
 \midrule
-Mid-band gain & --- & --- & CRO / Multisim \\
-Input level range (min--max) & --- & --- & Signal generator \\
-Target output level (post-AGC) & --- & --- & DMM / CRO \\
-AGC threshold & --- & --- & Transient sweep \\
+U1A (VGA) gain & To be determined (simulation) & --- & CRO / Multisim \\
+Overall gain at 10~mV input & $\approx$50$\times$ & --- & Transient sweep \\
+Overall gain at 50~mV input & $\approx$10$\times$ & --- & Transient sweep \\
+Overall gain at 100~mV input & $\approx$5$\times$ & --- & Transient sweep \\
+Target output level (post-AGC) & $\approx$0.5~V & --- & DMM / CRO \\
+Input level range tested & 10--100~mV & --- & Signal generator \\
 Attack time & --- & --- & Transient step response \\
 Release time & --- & --- & Transient step response \\
 Bandwidth & --- & --- & AC sweep \\
-Supply voltage & --- & --- & DMM \\
+Supply voltage & $+12$~V / $-12$~V & --- & DMM \\
 Minimum success criterion & --- & --- & As assigned \\
 \bottomrule
 \end{tabularx}
+\par\vspace{6pt}
+\begin{minipage}{0.96\textwidth}
+\raggedright\small The gain of U1A is not a fixed resistor ratio in this topology (Chapter~\ref{ch:circuitdesign}).
+\end{minipage}
 \end{table}
 
-\noindent\placeholder{All numeric targets, tolerances, and the assigned minimum success criterion to be supplied by the course instructor for this batch}
+\noindent\placeholder{Tolerances, target bandwidth, target attack/release time, and the assigned minimum success criterion to be supplied by the course instructor for this batch}

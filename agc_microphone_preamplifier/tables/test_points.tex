@@ -1,21 +1,22 @@
-% =====================================================
-% Table: Test points
-% Structure only -- actual test-point labels and expected
-% signals depend on the team's final schematic.
-% =====================================================
-\begin{table}[H]
+% Test points -- nodes identified from the schematic. Expected signal
+% levels are left for the simulation/measurement results.
+\begin{table}[!htbp]
 \centering
 \caption{Designated test points.}
 \label{tab:test-points}
 \begin{tabularx}{\textwidth}{@{}lXX@{}}
 \toprule
-\textbf{Test point} & \textbf{Location / stage} & \textbf{Expected signal} \\
+\textbf{Test point} & \textbf{Node (as drawn)} & \textbf{Observed on} \\
 \midrule
---- & --- & --- \\
---- & --- & --- \\
---- & --- & --- \\
+TP1 & U1A non-inverting input (R1/R2 junction) & XSC1 channel A \\
+TP2 & U1A output / U1B non-inverting input & XSC1 channel B \\
+TP3 & U1B output (D1 cathode side) & --- \\
+TP4 & C1/R4 hold node (D1 anode, U1B inverting input, U2A non-inverting input) & --- \\
+TP5 & U2A output / Q1 gate & --- \\
 \bottomrule
 \end{tabularx}
+\par\vspace{6pt}
+\begin{minipage}{0.96\textwidth}
+\raggedright\small \placeholder{Expected signal levels at each test point to be filled in from simulation and measurement; the XSC1 channel assignments should be confirmed against the Multisim file}
+\end{minipage}
 \end{table}
-
-\noindent\placeholder{Test-point labels, locations, and expected signals to be defined on the finalised schematic}
